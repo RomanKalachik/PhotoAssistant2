@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F2EAB0F9-966D-4553-8A17-7163FC7BC0B3}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PhotoAssistant.Indexer</RootNamespace>
+    <AssemblyName>PhotoAssistant.Indexer</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\dlls\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\dlls\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\dlls\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6">
+      <HintPath>..\dlls\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.4.7.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
+      <HintPath>..\dlls\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.Data.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Indexer.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\SimpleLinkTests.cs" />
+    <Compile Include="Wrappers\ActionCode.cs" />
+    <Compile Include="Wrappers\AutoBWListener.cs" />
+    <Compile Include="Wrappers\AutoCamListener.cs" />
+    <Compile Include="Wrappers\AutoChromaListener.cs" />
+    <Compile Include="Wrappers\AutoColorTonListener.cs" />
+    <Compile Include="Wrappers\AutoExpListener.cs" />
+    <Compile Include="Wrappers\AutoPartialProfile.cs" />
+    <Compile Include="Wrappers\BatchProcessingListener.cs" />
+    <Compile Include="Wrappers\BlackWhiteParams.cs" />
+    <Compile Include="Wrappers\ByteOrder.cs" />
+    <Compile Include="Wrappers\CACorrParams.cs" />
+    <Compile Include="Wrappers\ChannelMixerParams.cs" />
+    <Compile Include="Wrappers\ChoiceInterpreter.cs" />
+    <Compile Include="Wrappers\CoarseTransformParams.cs" />
+    <Compile Include="Wrappers\ColorAppearanceParams.cs" />
+    <Compile Include="Wrappers\ColorManagementParams.cs" />
+    <Compile Include="Wrappers\ColorTemp.cs" />
+    <Compile Include="Wrappers\ColorToningParams.cs" />
+    <Compile Include="Wrappers\CommonTransformParams.cs" />
+    <Compile Include="Wrappers\Coord2D.cs" />
+    <Compile Include="Wrappers\CPBKeyType.cs" />
+    <Compile Include="Wrappers\CropParams.cs" />
+    <Compile Include="Wrappers\DCPProfile.cs" />
+    <Compile Include="Wrappers\DCPStore.cs" />
+    <Compile Include="Wrappers\DefringeParams.cs" />
+    <Compile Include="Wrappers\DetailedCrop.cs" />
+    <Compile Include="Wrappers\DetailedCropListener.cs" />
+    <Compile Include="Wrappers\DirPyrDenoiseParams.cs" />
+    <Compile Include="Wrappers\DirPyrEqualizerParams.cs" />
+    <Compile Include="Wrappers\DistortionParams.cs" />
+    <Compile Include="Wrappers\EPDParams.cs" />
+    <Compile Include="Wrappers\ExifManager.cs" />
+    <Compile Include="Wrappers\FilmSimulationParams.cs" />
+    <Compile Include="Wrappers\Format.cs" />
+    <Compile Include="Wrappers\GradientParams.cs" />
+    <Compile Include="Wrappers\HistogramListener.cs" />
+    <Compile Include="Wrappers\HSVEqualizerParams.cs" />
+    <Compile Include="Wrappers\HueLUT.cs" />
+    <Compile Include="Wrappers\IImage.cs" />
+    <Compile Include="Wrappers\IImage16.cs" />
+    <Compile Include="Wrappers\IImage8.cs" />
+    <Compile Include="Wrappers\IImagefloat.cs" />
+    <Compile Include="Wrappers\Image16.cs" />
+    <Compile Include="Wrappers\Image8.cs" />
+    <Compile Include="Wrappers\ImageData.cs" />
+    <Compile Include="Wrappers\ImageDatas.cs" />
+    <Compile Include="Wrappers\Imagefloat.cs" />
+    <Compile Include="Wrappers\ImageMatrices.cs" />
+    <Compile Include="Wrappers\ImageMetaData.cs" />
+    <Compile Include="Wrappers\ImageSource.cs" />
+    <Compile Include="Wrappers\ImpulseDenoiseParams.cs" />
+    <Compile Include="Wrappers\InitialImage.cs" />
+    <Compile Include="Wrappers\Interpreter.cs" />
+    <Compile Include="Wrappers\LCurveParams.cs" />
+    <Compile Include="Wrappers\LensProfParams.cs" />
+    <Compile Include="Wrappers\libPhotoAssistantImageProcessing.cs" />
+    <Compile Include="Wrappers\libPhotoAssistantImageProcessingPINVOKE.cs" />
+    <Compile Include="Wrappers\MNKind.cs" />
+    <Compile Include="Wrappers\MyMutex.cs" />
+    <Compile Include="Wrappers\MyReaderLock.cs" />
+    <Compile Include="Wrappers\MyRWMutex.cs" />
+    <Compile Include="Wrappers\MyWriterLock.cs" />
+    <Compile Include="Wrappers\Options.cs" />
+    <Compile Include="Wrappers\PartialProfile.cs" />
+    <Compile Include="Wrappers\PCVignetteParams.cs" />
+    <Compile Include="Wrappers\PerspectiveParams.cs" />
+    <Compile Include="Wrappers\PPLoadLocation.cs" />
+    <Compile Include="Wrappers\prevdemo_t.cs" />
+    <Compile Include="Wrappers\PreviewImage.cs" />
+    <Compile Include="Wrappers\PreviewImageListener.cs" />
+    <Compile Include="Wrappers\ProcessingJob.cs" />
+    <Compile Include="Wrappers\ProcEvent.cs" />
+    <Compile Include="Wrappers\ProcParams.cs" />
+    <Compile Include="Wrappers\ProgressListener.cs" />
+    <Compile Include="Wrappers\RawImageSource.cs" />
+    <Compile Include="Wrappers\RawMetaDataLocation.cs" />
+    <Compile Include="Wrappers\RAWParams.cs" />
+    <Compile Include="Wrappers\ResizeParams.cs" />
+    <Compile Include="Wrappers\RGBCurvesParams.cs" />
+    <Compile Include="Wrappers\RotateParams.cs" />
+    <Compile Include="Wrappers\SaveFormat.cs" />
+    <Compile Include="Wrappers\Settings.cs" />
+    <Compile Include="Wrappers\SharpenEdgeParams.cs" />
+    <Compile Include="Wrappers\SharpeningParams.cs" />
+    <Compile Include="Wrappers\SharpenMicroParams.cs" />
+    <Compile Include="Wrappers\SHParams.cs" />
+    <Compile Include="Wrappers\SizeListener.cs" />
+    <Compile Include="Wrappers\StagedImageProcessor.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_a_3__double.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_bool.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_CacheImageData.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_cmsHPROFILE.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_cmsHTRANSFORM.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_double.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_eSensorType.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_FILE.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_float.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_Glib__ustring.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_Gtk__SortType.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_Imagefloat.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_int.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_LUTT_unsigned_int_t.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_LUTu.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_ParamsEdited.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_p_char.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_p_float.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_p_rtengine__DCPProfile.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_RawImage.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_rtengine__ColorGradientCurve.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_rtengine__NoiseCurve.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_rtengine__OpacityCurve.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_rtengine__procparams__ThresholdT_double_t.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_rtengine__procparams__ThresholdT_int_t.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_rtengine__SafeKeyFile.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_rtengine__WavCurve.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_rtengine__WavOpacityCurveBY.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_rtengine__WavOpacityCurveRG.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_rtengine__WavOpacityCurveW.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_rtengine__WavOpacityCurveWL.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_signed_char.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_std__mapT_Glib__ustring_Glib__ustring_std__lessT_Glib__ustring_t_t.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_std__mapT_Glib__ustring_std__vectorT_Glib__ustring_t_std__lessT_Glib__ustring_t_t.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_std__string.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_std__vectorT_Coord2D_t.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_std__vectorT_double_t.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_std__vectorT_Glib__ustring_t.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_std__vectorT_int_t.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_std__vectorT_rtengine__Coord2D_t.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_std__vectorT_rtengine__procparams__WBEntry_p_t.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_std__vectorT_rtexif__Tag_p_t.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_time_t.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_tm.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_unsigned_char.cs" />
+    <Compile Include="Wrappers\SWIGTYPE_p_unsigned_short.cs" />
+    <Compile Include="Wrappers\Tag.cs" />
+    <Compile Include="Wrappers\TagAttrib.cs" />
+    <Compile Include="Wrappers\TagDirectory.cs" />
+    <Compile Include="Wrappers\TagDirectoryTable.cs" />
+    <Compile Include="Wrappers\TagType.cs" />
+    <Compile Include="Wrappers\ThFileType.cs" />
+    <Compile Include="Wrappers\TIFFHeader.cs" />
+    <Compile Include="Wrappers\ToneCurveParams.cs" />
+    <Compile Include="Wrappers\TypeInterpolation.cs" />
+    <Compile Include="Wrappers\VibranceParams.cs" />
+    <Compile Include="Wrappers\VignettingParams.cs" />
+    <Compile Include="Wrappers\WaveletListener.cs" />
+    <Compile Include="Wrappers\WaveletParams.cs" />
+    <Compile Include="Wrappers\WBEntry.cs" />
+    <Compile Include="Wrappers\WBParams.cs" />
+    <Compile Include="Wrappers\WBTypes.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="copyDependentDlls.bat" />
+    <None Include="DependentDlls.list" />
+    <None Include="log4.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\ImageNotFound.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PhotoAssistant.Core\PhotoAssistant.Core.csproj">
+      <Project>{f544bbcb-efd8-4225-bcd5-9e784bce0031}</Project>
+      <Name>PhotoAssistant.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>$(MSBuildProjectDirectory)\copyDependentDlls.bat $(TargetDir) $(MSBuildProjectDirectory)\DependentDlls.list  $(MSBuildProjectDirectory)\..\dlls\</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

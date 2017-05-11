@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{ADC276B7-0AE6-45C8-AF25-8F1D354BA237}</ProjectGuid>
+    <RootNamespace>atk</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;$(AtkDefines);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(AtkDllPrefix)$(ProjectName)$(AtkDllSuffix).dll</OutputFile>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>$(OutDir)$(ProjectName)-$(ApiVersion).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>$(AtkDefines);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(AtkDllPrefix)$(ProjectName)$(AtkDllSuffix).dll</OutputFile>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>$(OutDir)$(ProjectName)-$(ApiVersion).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;$(AtkDefines);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(AtkDllPrefix)$(ProjectName)$(AtkDllSuffix).dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>$(TargetDir)$(ProjectName)-$(ApiVersion).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>$(AtkDefines);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(AtkDllPrefix)$(ProjectName)$(AtkDllSuffix).dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>$(TargetDir)$(ProjectName)-$(ApiVersion).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="rt\rtengine\amaze_demosaic_RT.cc" />
+    <ClCompile Include="rt\rtengine\calc_distort.cc" />
+    <ClCompile Include="rt\rtengine\camconst.cc" />
+    <ClCompile Include="rt\rtengine\CA_correct_RT.cc" />
+    <ClCompile Include="rt\rtengine\cfa_linedn_RT.cc" />
+    <ClCompile Include="rt\rtengine\ciecam02.cc" />
+    <ClCompile Include="rt\rtengine\cieimage.cc" />
+    <ClCompile Include="rt\rtengine\cJSON.c" />
+    <ClCompile Include="rt\rtengine\clutstore.cc" />
+    <ClCompile Include="rt\rtengine\color.cc" />
+    <ClCompile Include="rt\rtengine\colortemp.cc" />
+    <ClCompile Include="rt\rtengine\cplx_wavelet_dec.cc" />
+    <ClCompile Include="rt\rtengine\curves.cc" />
+    <ClCompile Include="rt\rtengine\dcp.cc" />
+    <ClCompile Include="rt\rtengine\dcraw.c" />
+    <ClCompile Include="rt\rtengine\dcraw.cc" />
+    <ClCompile Include="rt\rtengine\dcrop.cc" />
+    <ClCompile Include="rt\rtengine\demosaic_algos.cc" />
+    <ClCompile Include="rt\rtengine\dfmanager.cc" />
+    <ClCompile Include="rt\rtengine\diagonalcurves.cc" />
+    <ClCompile Include="rt\rtengine\dirpyrLab_denoise.cc" />
+    <ClCompile Include="rt\rtengine\dirpyrLab_equalizer.cc" />
+    <ClCompile Include="rt\rtengine\dirpyr_equalizer.cc" />
+    <ClCompile Include="rt\rtengine\EdgePreserveLab.cc" />
+    <ClCompile Include="rt\rtengine\EdgePreservingDecomposition.cc" />
+    <ClCompile Include="rt\rtengine\editbuffer.cc" />
+    <ClCompile Include="rt\rtengine\ex1simple.cc" />
+    <ClCompile Include="rt\rtengine\ex2simple.cc" />
+    <ClCompile Include="rt\rtengine\expo_before_b.cc" />
+    <ClCompile Include="rt\rtengine\fast_demo.cc" />
+    <ClCompile Include="rt\rtengine\ffmanager.cc" />
+    <ClCompile Include="rt\rtengine\flatcurves.cc" />
+    <ClCompile Include="rt\rtengine\FTblockDN.cc" />
+    <ClCompile Include="rt\rtengine\green_equil_RT.cc" />
+    <ClCompile Include="rt\rtengine\hilite_recon.cc" />
+    <ClCompile Include="rt\rtengine\hlmultipliers.cc" />
+    <ClCompile Include="rt\rtengine\hlrecovery.cc" />
+    <ClCompile Include="rt\rtengine\iccjpeg.cc" />
+    <ClCompile Include="rt\rtengine\iccstore.cc" />
+    <ClCompile Include="rt\rtengine\iimage.cc" />
+    <ClCompile Include="rt\rtengine\image16.cc" />
+    <ClCompile Include="rt\rtengine\image8.cc" />
+    <ClCompile Include="rt\rtengine\imagedata.cc" />
+    <ClCompile Include="rt\rtengine\imagedimensions.cc" />
+    <ClCompile Include="rt\rtengine\imagefloat.cc" />
+    <ClCompile Include="rt\rtengine\imageio.cc" />
+    <ClCompile Include="rt\rtengine\improccoordinator.cc" />
+    <ClCompile Include="rt\rtengine\improcfun.cc" />
+    <ClCompile Include="rt\rtengine\init.cc" />
+    <ClCompile Include="rt\rtengine\iplab2rgb.cc" />
+    <ClCompile Include="rt\rtengine\ipresize.cc" />
+    <ClCompile Include="rt\rtengine\ipsharpen.cc" />
+    <ClCompile Include="rt\rtengine\iptransform.cc" />
+    <ClCompile Include="rt\rtengine\ipvibrance.cc" />
+    <ClCompile Include="rt\rtengine\ipwavelet.cc" />
+    <ClCompile Include="rt\rtengine\jdatasrc.cc" />
+    <ClCompile Include="rt\rtengine\jpeg_memsrc.cc" />
+    <ClCompile Include="rt\rtengine\labimage.cc" />
+    <ClCompile Include="rt\rtengine\lcp.cc" />
+    <ClCompile Include="rt\rtengine\loadinitial.cc" />
+    <ClCompile Include="rt\rtengine\myfile.cc" />
+    <ClCompile Include="rt\rtengine\PF_correct_RT.cc" />
+    <ClCompile Include="rt\rtengine\previewimage.cc" />
+    <ClCompile Include="rt\rtengine\processingjob.cc" />
+    <ClCompile Include="rt\rtengine\procparams.cc" />
+    <ClCompile Include="rt\rtengine\rawimage.cc" />
+    <ClCompile Include="rt\rtengine\rawimagesource.cc" />
+    <ClCompile Include="rt\rtengine\refreshmap.cc" />
+    <ClCompile Include="rt\rtengine\rtetest.cc" />
+    <ClCompile Include="rt\rtengine\rtthumbnail.cc" />
+    <ClCompile Include="rt\rtengine\safegtk.cc" />
+    <ClCompile Include="rt\rtengine\shmap.cc" />
+    <ClCompile Include="rt\rtengine\simpleprocess.cc" />
+    <ClCompile Include="rt\rtengine\sleef.c" />
+    <ClCompile Include="rt\rtengine\sleefsseavx.c" />
+    <ClCompile Include="rt\rtengine\slicer.cc" />
+    <ClCompile Include="rt\rtengine\stdimagesource.cc" />
+    <ClCompile Include="rt\rtengine\utils.cc" />
+    <ClCompile Include="rt\rtengine\wrappers_wrap.cxx" />
+    <ClCompile Include="rt\rtexif\canonattribs.cc" />
+    <ClCompile Include="rt\rtexif\fujiattribs.cc" />
+    <ClCompile Include="rt\rtexif\kodakattribs.cc" />
+    <ClCompile Include="rt\rtexif\nikonattribs.cc" />
+    <ClCompile Include="rt\rtexif\olympusattribs.cc" />
+    <ClCompile Include="rt\rtexif\pentaxattribs.cc" />
+    <ClCompile Include="rt\rtexif\rtexif.cc" />
+    <ClCompile Include="rt\rtexif\sonyminoltaattribs.cc" />
+    <ClCompile Include="rt\rtexif\stdattribs.cc" />
+    <ClCompile Include="rt\rtgui\guiutils.cc" />
+    <ClCompile Include="rt\rtgui\options.cc" />
+    <ClCompile Include="rt\rtgui\profilestore.cc" />
+    <ClCompile Include="rt\rtgui\rtimage.cc" />
+    <ClCompile Include="rt\*\*.h" />
+    <ClCompile Include="rt\*\*\*.h" />
+    <ClCompile Include="rt\CMakeLists.txt" />
+    <ClCompile Include="rt\ProcessorTargets.cmake" />
+    <ClCompile Include="rt\Win32CMakeOptions-MK1.txt" />
+    <ClCompile Include="rt\rtengine\CMakeLists.txt" />
+    <ClCompile Include="rt\rtexif\CMakeLists.txt" />
+    <ClCompile Include="rt\rtgui\CMakeLists.txt" />
+    <ClCompile Include="rt\*\*.in" />
+    <ClCompile Include="*.bat" />
+    <ClCompile Include="*.in" />
+    <ClCompile Include="*.i" />
+    <ClCompile Include="*.txt" />
+  </ItemGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PostBuildEvent>
+      <Command>
+call "$(TargetDir)..\PhotoAssistant.ImageProcessing\compile.bat
+rem xcopy "$(TargetDir)..\RawProcessor2\Builds\Debug" "$(TargetDir)..\Indexer\bin\Debug" /Q /Y /I
+      </Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+rem cd "$(TargetDir)..\PhotoAssistant.ImageProcessing\rt\rtengine\
+rem call RawImageSource_generate.bat</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>
