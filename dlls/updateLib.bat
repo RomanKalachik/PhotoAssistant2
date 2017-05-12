@@ -1,0 +1,1 @@
+for /F "tokens=*" %%A in (files.txt) do copy C:\msys64\mingw32\bin\%%A .
