@@ -3,11 +3,7 @@ using PhotoAssistant.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace PhotoAssistant.Tests {
-
     [TestClass]
     public class FileRenameManagerTests {
         [TestMethod]
@@ -42,7 +38,7 @@ namespace PhotoAssistant.Tests {
             FileRenameValueReferenceCollection res = manager.ParseString("{}", errors);
             Assert.AreEqual(0, res.Count);
             Assert.AreEqual(1, errors.Count);
-            Assert.AreEqual("", errors[0].Name);
+            Assert.AreEqual(string.Empty, errors[0].Name);
         }
         [TestMethod]
         public void TestNoKeyword() {

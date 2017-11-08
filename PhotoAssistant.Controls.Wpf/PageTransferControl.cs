@@ -1,61 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
 using System.Windows.Threading;
-using DevExpress.Xpf.Core;
-
 namespace PhotoAssistant.Controls.Wpf {
-
     public class PageTransferControlEx : ContentControl {
         public static readonly RoutedEvent ActualContentChangedEvent;
-
         static PageTransferControlEx() {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(PageTransferControlEx), new FrameworkPropertyMetadata(typeof(PageTransferControlEx)));
-            ActualContentChangedEvent = EventManager.RegisterRoutedEvent("ActualContentChanged", RoutingStrategy.Direct, typeof(RoutedEventHandler), typeof(PageTransferControlEx));
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(PageTransferControlEx), new FrameworkPropertyMetadata(typeof(PageTransferControlEx)));
+            ActualContentChangedEvent = EventManager.RegisterRoutedEvent(nameof(ActualContentChanged), RoutingStrategy.Direct, typeof(RoutedEventHandler), typeof(PageTransferControlEx));
         }
-
-        ContentPresenter ContentPresenter { get; set; }
-        FrameworkElement RootObject { get; set; }
-        ContentPresenter PrevContentPresenter { get; set; }
+        ContentPresenter ContentPresenter {
+            get; set;
+        }
+        FrameworkElement RootObject {
+            get; set;
+        }
+        ContentPresenter PrevContentPresenter {
+            get; set;
+        }
         public override void OnApplyTemplate() {
             base.OnApplyTemplate();
             ContentPresenter = (ContentPresenter)GetTemplateChild("PART_ContentPresenter");
             RootObject = (FrameworkElement)GetTemplateChild("PART_RootObject");
             PrevContentPresenter = (ContentPresenter)GetTemplateChild("PART_PrevContentPresenter");
         }
-
         public object ActualContent {
-            get { return (object)GetValue(ActualContentProperty); }
-            set { SetValue(ActualContentProperty, value); }
+            get => GetValue(ActualContentProperty);
+            set => SetValue(ActualContentProperty, value);
         }
-
         public static readonly DependencyProperty ActualContentProperty =
             DependencyProperty.Register("ActualContent", typeof(object), typeof(PageTransferControlEx), new PropertyMetadata(null));
-
-
-
         public object PrevContent {
-            get { return (object)GetValue(PrevContentProperty); }
-            set { SetValue(PrevContentProperty, value); }
+            get => GetValue(PrevContentProperty);
+            set => SetValue(PrevContentProperty, value);
         }
-
         public static readonly DependencyProperty PrevContentProperty =
             DependencyProperty.Register("PrevContent", typeof(object), typeof(PageTransferControlEx), new PropertyMetadata(null));
-
-
-
         public event RoutedEventHandler ActualContentChanged {
-            add { this.AddHandler(ActualContentChangedEvent, value); }
-            remove { this.RemoveHandler(ActualContentChangedEvent, value); }
+            add {
+                AddHandler(ActualContentChangedEvent, value);
+            }
+            remove {
+                RemoveHandler(ActualContentChangedEvent, value);
+            }
         }
-
         protected override void OnContentChanged(object oldContent, object newContent) {
             base.OnContentChanged(oldContent, newContent);
 
@@ -71,8 +63,7 @@ namespace PhotoAssistant.Controls.Wpf {
                 RunAnimation();
             }));
         }
-
-        private void RunAnimation() {
+        void RunAnimation() {
             if(IsAnimated) {
                 LastStoryboard.Stop();
                 LastStoryboard.Completed -= st_Completed;
@@ -98,9 +89,12 @@ namespace PhotoAssistant.Controls.Wpf {
             LastStoryboard = st;
             st.Begin(this);
         }
-
-        bool IsAnimated { get; set; }
-        Storyboard LastStoryboard { get; set; }
+        bool IsAnimated {
+            get; set;
+        }
+        Storyboard LastStoryboard {
+            get; set;
+        }
         void st_Completed(object sender, EventArgs e) {
             IsAnimated = false;
             PrevContentPresenter.Opacity = 0.0;

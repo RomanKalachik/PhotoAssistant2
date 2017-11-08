@@ -1,74 +1,73 @@
-﻿using DevExpress.XtraEditors;
-using PhotoAssistant.Controls.Win.EditingControls;
+﻿using PhotoAssistant.Controls.Win.EditingControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace PhotoAssistant.UI.ViewHelpers {
     public class TrackBarWithSpinHelper {
         public TrackBarWithSpinHelper(ColorTrackBarControl trackBar, ScrollableSpinEdit spinEdit) {
-            TrackBar = trackBar;
+        TrackBar = trackBar;
             SpinEdit = spinEdit;
             TrackBar.ValueChanged += TrackBar_ValueChanged;
             SpinEdit.ValueChanged += SpinEdit_ValueChanged;
         }
-
-        protected bool SuppressValueChanged { get; set; }
-        private void SpinEdit_ValueChanged(object sender, EventArgs e) {
-            if(SuppressValueChanged)
+        protected bool SuppressValueChanged {
+            get; set;
+        }
+        void SpinEdit_ValueChanged(object sender, EventArgs e) {
+            if(SuppressValueChanged) {
                 return;
+            }
+
             SuppressValueChanged = true;
             try {
                 TrackBar.Values[0] = (int)(Convert.ToDouble(SpinEdit.Value) / Delta);
                 TrackBar.Invalidate();
                 TrackBar.Update();
                 RaiseValueChanged();
-            }
-            finally {
+            } finally {
                 SuppressValueChanged = false;
             }
         }
-
-        private void RaiseValueChanged() {
-            if(ValueChanged != null)
+        void RaiseValueChanged() {
+            if(ValueChanged != null) {
                 ValueChanged(this, EventArgs.Empty);
+            }
         }
-
-        private void TrackBar_ValueChanged(object sender, EventArgs e) {
-            if(SuppressValueChanged)
+        void TrackBar_ValueChanged(object sender, EventArgs e) {
+            if(SuppressValueChanged) {
                 return;
+            }
+
             SuppressValueChanged = true;
             try {
                 SpinEdit.Value = new decimal(TrackBar.Values[0] * Delta);
                 RaiseValueChanged();
-            }
-            finally {
+            } finally {
                 SuppressValueChanged = false;
             }
         }
-
         public float Value {
-            get { return (float)Convert.ToDouble(SpinEdit.Value); }
+            get => (float)Convert.ToDouble(SpinEdit.Value);
             set {
-                if(Value == value)
+                if(Value == value) {
                     return;
+                }
+
                 SpinEdit.Value = new decimal(value);
             }
         }
-
         float delta = 1.0f;
         public float Delta {
-            get { return delta; }
+            get => delta;
             set {
-                if(Delta == value)
+                if(Delta == value) {
                     return;
+                }
+
                 delta = value;
                 OnDeltaChanged();
             }
         }
-
         protected virtual void UpdateProperties() {
             float multiplier = Delta >= 1.0f ? 1.0f : 1.0f / Delta;
             SpinEdit.Properties.MaxValue = new decimal(Maximum);
@@ -76,45 +75,39 @@ namespace PhotoAssistant.UI.ViewHelpers {
             SpinEdit.Properties.MinValue = new decimal(Minimum);
             TrackBar.Properties.Minimum = (int)(Minimum * multiplier);
         }
-
-        protected virtual void OnDeltaChanged() {
-            UpdateProperties();
-        }
-
+        protected virtual void OnDeltaChanged() => UpdateProperties();
         float maximum = 10.0f;
         public float Maximum {
-            get { return maximum; }
+            get => maximum;
             set {
-                if(Maximum == value)
+                if(Maximum == value) {
                     return;
+                }
+
                 maximum = value;
                 OnMaximumChanged();
             }
         }
-
-        protected virtual void OnMaximumChanged() {
-            UpdateProperties();
-        }
-
-        protected virtual void OnMinimumChanged() {
-            UpdateProperties();
-        }
-
+        protected virtual void OnMaximumChanged() => UpdateProperties();
+        protected virtual void OnMinimumChanged() => UpdateProperties();
         float minimum = 0.0f;
         public float Minimum {
-            get { return minimum; }
+            get => minimum;
             set {
-                if(Minimum == value)
+                if(Minimum == value) {
                     return;
+                }
+
                 minimum = value;
                 OnMinimumChanged();
             }
         }
-
-        public ColorTrackBarControl TrackBar { get; private set; }
-        public ScrollableSpinEdit SpinEdit { get; private set; }
-
+        public ColorTrackBarControl TrackBar {
+            get; private set;
+        }
+        public ScrollableSpinEdit SpinEdit {
+            get; private set;
+        }
         public event EventHandler ValueChanged;
-        
     }
 }

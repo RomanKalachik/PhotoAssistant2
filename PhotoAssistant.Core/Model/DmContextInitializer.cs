@@ -4,12 +4,8 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace PhotoAssistant.Core.Model {
     public class DmContextInitializer : CreateDatabaseIfNotExists<DmContext> {
-
         protected override void Seed(DmContext context) {
             base.Seed(context);
 
@@ -21,12 +17,8 @@ namespace PhotoAssistant.Core.Model {
 
             context.SaveChanges();
         }
-
-        private void InitializeProperties(DmContext context) {
-            context.Properties.Add(new DbPropertiesModel());
-        }
-
-        private void InitializeMediaFormats(DmContext context) {
+        void InitializeProperties(DmContext context) => context.Properties.Add(new DbPropertiesModel());
+        void InitializeMediaFormats(DmContext context) {
             context.MediaFormat.Add(new MediaFormat() { Text = MediaFormat.BmpString, Extension = MediaFormat.BmpFormatString, Type = MediaType.Image });
             context.MediaFormat.Add(new MediaFormat() { Text = MediaFormat.JpgString, Extension = MediaFormat.JpgFormatString, Type = MediaType.Image });
             context.MediaFormat.Add(new MediaFormat() { Text = MediaFormat.JpegString, Extension = MediaFormat.JpegFormatString, Type = MediaType.Image });
@@ -35,8 +27,7 @@ namespace PhotoAssistant.Core.Model {
             context.MediaFormat.Add(new MediaFormat() { Text = MediaFormat.TiffString, Extension = MediaFormat.TiffFormatString, Type = MediaType.Image });
             context.MediaFormat.Add(new MediaFormat() { Text = MediaFormat.Cr2String, Extension = MediaFormat.Cr2FormatString, Type = MediaType.Image });
         }
-
-        private void InitializeColorLabels(DmContext context) {
+        void InitializeColorLabels(DmContext context) {
             context.ColorLabels.Add(new DmColorLabel() { Color = DmColorLabel.Red, Text = DmColorLabel.RedString });
             context.ColorLabels.Add(new DmColorLabel() { Color = DmColorLabel.Orange, Text = DmColorLabel.OrangeString });
             context.ColorLabels.Add(new DmColorLabel() { Color = DmColorLabel.Yellow, Text = DmColorLabel.YellowString });
@@ -45,40 +36,45 @@ namespace PhotoAssistant.Core.Model {
             context.ColorLabels.Add(new DmColorLabel() { Color = DmColorLabel.Blue, Text = DmColorLabel.BlueString });
             context.ColorLabels.Add(new DmColorLabel() { Color = DmColorLabel.Pink, Text = DmColorLabel.PinkString });
         }
-
         Dictionary<int, Guid> tagId;
         protected Dictionary<int, Guid> TagId {
             get {
-                if(tagId == null)
+                if(tagId == null) {
                     tagId = new Dictionary<int, Guid>();
+                }
+
                 return tagId;
             }
         }
-
         protected Guid GetTagGuidForId(int id) {
-            if(!TagId.ContainsKey(id))
+            if(!TagId.ContainsKey(id)) {
                 TagId.Add(id, Guid.NewGuid());
+            }
+
             return TagId[id];
         }
-
         Dictionary<string, DmTag> tagText;
         protected Dictionary<string, DmTag> TagText {
             get {
-                if(tagText == null)
+                if(tagText == null) {
                     tagText = new Dictionary<string, DmTag>();
+                }
+
                 return tagText;
             }
         }
-
         protected DmTag GetTagByString(string tagText) {
-            if(TagText.ContainsKey(tagText))
+            if(TagText.ContainsKey(tagText)) {
                 return TagText[tagText];
+            }
+
             return null;
         }
-
         protected virtual void InitializeDefaultTags(DmContext context) {
-            if(!DmModel.AllowGenerateDefaultTags)
+            if(!DmModel.AllowGenerateDefaultTags) {
                 return;
+            }
+
             TagNodeDataSource source = new TagNodeDataSource();
             Assembly asm = Assembly.GetExecutingAssembly();
             Stream stream = asm.GetManifestResourceStream("PhotoAssistant.Core.Resources.DefaultTags.xml");
@@ -87,17 +83,17 @@ namespace PhotoAssistant.Core.Model {
             InitializeTags(context, source);
             InitializeTagNodes(source);
         }
-
-        private static void InitializeTagNodes(TagNodeDataSource source) {
+        static void InitializeTagNodes(TagNodeDataSource source) {
             foreach(TagNode node in source.Nodes) {
-                if(node.ParentId == -1)
+                if(node.ParentId == -1) {
                     continue;
+                }
+
                 TagNode parent = source.Nodes.FirstOrDefault(n => n.Id == node.ParentId);
                 node.Node.Parent = parent.Node;
             }
         }
-
-        private void InitializeTags(DmContext context, TagNodeDataSource source) {
+        void InitializeTags(DmContext context, TagNodeDataSource source) {
             foreach(TagNode node in source.Nodes) {
                 DmTag tag = GetOrCreateTag(context, node);
                 node.Tag = tag;
@@ -105,8 +101,7 @@ namespace PhotoAssistant.Core.Model {
                 context.TagNodes.Add(tagNode);
             }
         }
-
-        private DmTag GetOrCreateTag(DmContext context, TagNode node) {
+        DmTag GetOrCreateTag(DmContext context, TagNode node) {
             DmTag tag = GetTagByString(node.Value);
             if(tag == null) {
                 tag = new DmTag() { Id = GetTagGuidForId(node.Id), Value = node.Value, Color = node.Color };
@@ -115,15 +110,15 @@ namespace PhotoAssistant.Core.Model {
             }
             return tag;
         }
-
-        private DmTagNode CreateNode(TagNode node) {
+        DmTagNode CreateNode(TagNode node) {
             DmTagNode dn = new DmTagNode() { Id = GetTagGuidForId(node.Id), Tag = node.Tag, Type = TagType.Tag };
-            if(node.ParentId != -1)
+            if(node.ParentId != -1) {
                 dn.ParentId = GetTagGuidForId(node.ParentId);
+            }
+
             node.Node = dn;
             return dn;
         }
-
         protected virtual void InitializeFilterValues(DmContext context) {
             Filter savedSearches = new Filter(FilterType.SavedSearches, Guid.Empty);
             Filter lastImported = new Filter(FilterType.LastImported, savedSearches.Id);
@@ -222,16 +217,14 @@ namespace PhotoAssistant.Core.Model {
             InitializeMediaFormatFilters(context, mediaFormat);
             InitializeRatingFilters(context, rating);
         }
-
-        private void InitializeRatingFilters(DmContext context, Filter rating) {
+        void InitializeRatingFilters(DmContext context, Filter rating) {
             for(int i = 0; i < 6; i++) {
                 Filter filter = new Filter(FilterType.Rating, rating.Id);
                 filter.Value = i;
                 context.Filters.Add(filter);
             }
         }
-
-        private static void InitializeMediaFormatFilters(DmContext context, Filter mediaFormat) {
+        static void InitializeMediaFormatFilters(DmContext context, Filter mediaFormat) {
             List<MediaType> mediaTypes = new List<MediaType>();
             foreach(MediaFormat format in context.MediaFormat.Local) {
                 if(!mediaTypes.Contains(format.Type)) {
@@ -249,7 +242,6 @@ namespace PhotoAssistant.Core.Model {
                 context.Filters.Add(filter);
             }
         }
-
         protected virtual void InitializeColorLabelFilters(DmContext context, Filter colorLabel) {
             foreach(DmColorLabel label in context.ColorLabels.Local) {
                 Filter filter = new Filter(FilterType.ColorLabel, colorLabel.Id);

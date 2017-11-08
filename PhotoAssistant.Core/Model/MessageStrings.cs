@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace PhotoAssistant.Core.Model {
     public static class MessageStrings {
         public static string CannotOpenDataSource = "Cannot open data source";

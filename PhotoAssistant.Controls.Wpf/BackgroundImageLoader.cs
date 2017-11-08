@@ -1,40 +1,43 @@
-﻿using System;
+﻿using PhotoAssistant.Core.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
-using PhotoAssistant.Core.Model;
-
 namespace PhotoAssistant.Controls.Wpf {
     public class BackgroundImageLoader {
         static BackgroundImageLoader defaultLoader;
         public static BackgroundImageLoader Default {
             get {
-                if(defaultLoader == null)
+                if(defaultLoader == null) {
                     defaultLoader = new BackgroundImageLoader();
+                }
+
                 return defaultLoader;
             }
         }
         public void LoadFileImageInBackground(DmFile file, RunWorkerCompletedEventHandler handler) {
-            if(file == null)
+            if(file == null) {
                 return;
+            }
+
             ImageSource source = (ImageSource)file.ImageSource;
             if(source != null && source.IsFrozen) {
                 handler(this, new RunWorkerCompletedEventArgs(source, null, false));
                 return;
             }
-            if(file.LoadingImageSource)
+            if(file.LoadingImageSource) {
                 return;
+            }
+
             file.LoadingImageSource = true;
-            var worker = new BackgroundWorker() { WorkerReportsProgress = true };
+            BackgroundWorker worker = new BackgroundWorker() { WorkerReportsProgress = true };
             file.Worker = worker;
             worker.DoWork += (sender, args) => {
-                var uri = args.Argument as Uri;
-                var image = new BitmapImage();
+                Uri uri = args.Argument as Uri;
+                BitmapImage image = new BitmapImage();
 
                 image.BeginInit();
                 image.CacheOption = BitmapCacheOption.OnLoad;
@@ -63,22 +66,24 @@ namespace PhotoAssistant.Controls.Wpf {
             worker.RunWorkerCompleted += handler;
             worker.RunWorkerAsync(GetFileUri(file));
         }
-        private Uri GetFileUri(DmFile file) {
-            if(System.IO.File.Exists(file.Path))
+        Uri GetFileUri(DmFile file) {
+            if(System.IO.File.Exists(file.Path)) {
                 return new Uri(file.Path, UriKind.Absolute);
-            else
+            } else {
                 return new Uri(file.ThumbFileName, UriKind.Absolute);
+            }
         }
-
         public void LoadFileImageInBackground(List<DmFile> files, RunWorkerCompletedEventHandler handler) {
-            var worker = new BackgroundWorker() { WorkerReportsProgress = true };
+            BackgroundWorker worker = new BackgroundWorker() { WorkerReportsProgress = true };
             worker.DoWork += (sender, args) => {
                 List<DmFile> fileList = args.Argument as List<DmFile>;
                 foreach(DmFile file in fileList) {
-                    if(file.ImageSource != null || file.LoadingImageSource)
+                    if(file.ImageSource != null || file.LoadingImageSource) {
                         continue;
+                    }
+
                     file.LoadingImageSource = true;
-                    var image = new BitmapImage();
+                    BitmapImage image = new BitmapImage();
                     image.BeginInit();
                     image.CacheOption = BitmapCacheOption.OnLoad;
                     image.DownloadProgress += (s, e) => worker.ReportProgress(e.Progress);

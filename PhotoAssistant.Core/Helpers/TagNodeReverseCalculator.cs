@@ -1,14 +1,11 @@
-﻿using System;
+﻿using PhotoAssistant.Core.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PhotoAssistant.Core.Model;
-
 namespace PhotoAssistant.Core {
     public static class TagNodeReverseCalculator {
         public static void ReverseTagNodesTree(DmContext context) {
-            var nodes = context.TagNodes.Local.Where(t => t.Parent == null);
+            IEnumerable<DmTagNode> nodes = context.TagNodes.Local.Where(t => t.Parent == null);
             List<DmTagNodeReversed> rootNodes = new List<DmTagNodeReversed>();
             foreach(DmTagNode node in nodes) {
                 List<DmTagNodeReversed> list = ConntectNodeToChildren(context, node);
@@ -17,14 +14,12 @@ namespace PhotoAssistant.Core {
             rootNodes = context.TagNodesReversed.Local.Where(t => t.Parent == null).ToList();
             GroupNodes(context, rootNodes);
         }
-
-        private static List<DmTagNodeReversed> ConntectNodeToChildren(DmContext context, DmTagNode node) {
-            return GetParentNodes(context, node);
-        }
-
-        private static void GroupNodes(DmContext context, List<DmTagNodeReversed> rootNodes) {
-            if(rootNodes == null)
+        static List<DmTagNodeReversed> ConntectNodeToChildren(DmContext context, DmTagNode node) => GetParentNodes(context, node);
+        static void GroupNodes(DmContext context, List<DmTagNodeReversed> rootNodes) {
+            if(rootNodes == null) {
                 return;
+            }
+
             List<DmTagNodeReversed> groupedNodes = new List<DmTagNodeReversed>();
             foreach(DmTagNodeReversed rev in rootNodes) {
                 DmTagNodeReversed originNode = rootNodes.FirstOrDefault(n => n.Tag == rev.Tag);
@@ -42,8 +37,7 @@ namespace PhotoAssistant.Core {
                 GroupNodes(context, groupedNode.Children == null ? null : groupedNode.Children.ToList());
             }
         }
-
-        private static List<DmTagNodeReversed> GetParentNodes(DmContext context, DmTagNode node) {
+        static List<DmTagNodeReversed> GetParentNodes(DmContext context, DmTagNode node) {
             List<DmTagNodeReversed> res = new List<DmTagNodeReversed>();
             if(node.Children == null || node.Children.Count == 0) {
                 res.Add(new DmTagNodeReversed() { Tag = node.Tag, Type = node.Type });

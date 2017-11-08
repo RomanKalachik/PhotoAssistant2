@@ -1,0 +1,692 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E4B1A173-4F44-4D80-A91F-0502935E24D4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PhotoAssistant.UI</RootNamespace>
+    <AssemblyName>PhotoAssistant.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\dlls\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotoAssistant.Utils">
+      <HintPath>..\dlls\PhotoAssistant.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.BonusSkins.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.BonusSkins.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v15.1.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.Charts.v15.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.CodeParser.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.CodeParser.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.Data.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Images.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4">
+      <HintPath>..\dlls\DevExpress.Images.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Map.v15.1.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.Map.v15.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.Printing.v15.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v15.1.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.Sparkline.v15.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.Utils.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v15.1.UI, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.Utils.v15.1.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.XtraBars.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.XtraCharts.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v15.1.Extensions, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.XtraCharts.v15.1.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v15.1.UI, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.XtraCharts.v15.1.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v15.1.Wizard, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.XtraCharts.v15.1.Wizard.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.XtraEditors.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.XtraGrid.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.XtraLayout.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraMap.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.XtraMap.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.XtraNavBar.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.XtraPivotGrid.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.XtraPrinting.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.XtraReports.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v15.1.Extensions, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.XtraReports.v15.1.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.XtraRichEdit.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v15.1.Extensions, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.XtraRichEdit.v15.1.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraSpellChecker.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.XtraSpellChecker.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraSpreadsheet.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.XtraSpreadsheet.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.XtraTreeList.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraVerticalGrid.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.XtraVerticalGrid.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.Xpf.Core.v15.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.MetropolisDark.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.Xpf.Themes.MetropolisDark.v15.1.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MessageFilter.cs" />
+    <Compile Include="Helpers\BinaryPixelOp.cs" />
+    <Compile Include="Helpers\BinaryPixelOps.cs" />
+    <Compile Include="Helpers\BitVector2D.cs" />
+    <Compile Include="Helpers\BitVector2DSurfaceAdapter.cs" />
+    <Compile Include="Helpers\BoxedConstants.cs" />
+    <Compile Include="Helpers\CallbackOnDispose.cs" />
+    <Compile Include="Helpers\ColorBgra.cs" />
+    <Compile Include="Helpers\DeferredFormatter.cs" />
+    <Compile Include="Helpers\GpcWrapper\NativeConstants.cs" />
+    <Compile Include="Helpers\GpcWrapper\NativeMethods.cs" />
+    <Compile Include="Helpers\GpcWrapper\NativeStructs.cs" />
+    <Compile Include="Helpers\GpcWrapper\Polygon.cs" />
+    <Compile Include="Helpers\GpcWrapper\Vertex.cs" />
+    <Compile Include="Helpers\GpcWrapper\VertexList.cs" />
+    <Compile Include="Helpers\Histogram.cs" />
+    <Compile Include="Helpers\HistogramRGB.cs" />
+    <Compile Include="Helpers\HsvColor.cs" />
+    <Compile Include="Helpers\IBitVector2D.cs" />
+    <Compile Include="Helpers\ICloneable`1.cs" />
+    <Compile Include="Helpers\IDeferredSerializable.cs" />
+    <Compile Include="Helpers\ImageUtils.cs" />
+    <Compile Include="Helpers\IPixelOp.cs" />
+    <Compile Include="Helpers\Memory.cs" />
+    <Compile Include="Helpers\MemoryBlock.cs" />
+    <Compile Include="Helpers\NativeConstants.cs" />
+    <Compile Include="Helpers\NativeDelegates.cs" />
+    <Compile Include="Helpers\NativeErrors.cs" />
+    <Compile Include="Helpers\NativeInterfaces.cs" />
+    <Compile Include="Helpers\NativeMethods.cs" />
+    <Compile Include="Helpers\NativeStructs.cs" />
+    <Compile Include="Helpers\NullGraphics.cs" />
+    <Compile Include="Helpers\Pair.cs" />
+    <Compile Include="Helpers\Pair`2.cs" />
+    <Compile Include="Helpers\PdnException.cs" />
+    <Compile Include="Helpers\PdnGraphics.cs" />
+    <Compile Include="Helpers\PdnGraphicsPath.cs" />
+    <Compile Include="Helpers\PdnRegion.cs" />
+    <Compile Include="Helpers\PixelOp.cs" />
+    <Compile Include="Helpers\Procedure.cs" />
+    <Compile Include="Helpers\Processor.cs" />
+    <Compile Include="Helpers\ProcessorArchitecture.cs" />
+    <Compile Include="Helpers\ProcessorFeature.cs" />
+    <Compile Include="Helpers\PropertyItem2.cs" />
+    <Compile Include="Helpers\PropertySystem\BooleanProperty.cs" />
+    <Compile Include="Helpers\PropertySystem\DoubleProperty.cs" />
+    <Compile Include="Helpers\PropertySystem\DoubleVectorProperty.cs" />
+    <Compile Include="Helpers\PropertySystem\ImageProperty.cs" />
+    <Compile Include="Helpers\PropertySystem\Int32Property.cs" />
+    <Compile Include="Helpers\PropertySystem\IPropertyRef.cs" />
+    <Compile Include="Helpers\PropertySystem\LinkValuesBasedOnBooleanRule`2.cs" />
+    <Compile Include="Helpers\PropertySystem\Property.cs" />
+    <Compile Include="Helpers\PropertySystem\PropertyCollection.cs" />
+    <Compile Include="Helpers\PropertySystem\PropertyCollectionRule.cs" />
+    <Compile Include="Helpers\PropertySystem\Property`1.cs" />
+    <Compile Include="Helpers\PropertySystem\ReadOnlyBoundToBooleanRule.cs" />
+    <Compile Include="Helpers\PropertySystem\ReadOnlyBoundToValueRule`2.cs" />
+    <Compile Include="Helpers\PropertySystem\ScalarProperty`1.cs" />
+    <Compile Include="Helpers\PropertySystem\SoftMutuallyBoundMinMaxRule`2.cs" />
+    <Compile Include="Helpers\PropertySystem\StaticListChoiceProperty.cs" />
+    <Compile Include="Helpers\PropertySystem\StringProperty.cs" />
+    <Compile Include="Helpers\PropertySystem\ValueValidationFailureResult.cs" />
+    <Compile Include="Helpers\PropertySystem\VectorProperty`1.cs" />
+    <Compile Include="Helpers\ReadOnlyException.cs" />
+    <Compile Include="Helpers\ResamplingAlgorithm.cs" />
+    <Compile Include="Helpers\Resource`1.cs" />
+    <Compile Include="Helpers\RgbColor.cs" />
+    <Compile Include="Helpers\SafeNativeMethods.cs" />
+    <Compile Include="Helpers\ScaleFactor.cs" />
+    <Compile Include="Helpers\Scanline.cs" />
+    <Compile Include="Helpers\SerializationFallbackBinder.cs" />
+    <Compile Include="Helpers\Set.cs" />
+    <Compile Include="Helpers\Set`1.cs" />
+    <Compile Include="Helpers\SplineInterpolator.cs" />
+    <Compile Include="Helpers\Surface.cs" />
+    <Compile Include="Helpers\ThreadPool.cs" />
+    <Compile Include="Helpers\Timing.cs" />
+    <Compile Include="Helpers\Tracing.cs" />
+    <Compile Include="Helpers\UnaryPixelOp.cs" />
+    <Compile Include="Helpers\UnaryPixelOps.cs" />
+    <Compile Include="Helpers\UserBlendOp.cs" />
+    <Compile Include="Helpers\UserBlendOps.cs" />
+    <Compile Include="Helpers\UserBlendOps.Generated.cs" />
+    <Compile Include="Helpers\Utility.cs" />
+    <Compile Include="Helpers\Vector`1.cs" />
+    <Compile Include="Helpers\WaitableCounter.cs" />
+    <Compile Include="Helpers\WaitHandleArray.cs" />
+    <Compile Include="Helpers\WIAHelper.cs" />
+    <Compile Include="Helpers\WorkerThreadException.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="ViewHelpers\ColorLabelImagesCreator.cs" />
+    <Compile Include="ViewHelpers\CustomSkinHelper.cs" />
+    <Compile Include="ViewHelpers\ExistingFileManager.cs" />
+    <Compile Include="ViewHelpers\GalleryStateChanger.cs" />
+    <Compile Include="ViewHelpers\GeoLocationIconsProvider.cs" />
+    <Compile Include="ViewHelpers\MapClusterizationHelper.cs" />
+    <Compile Include="ViewHelpers\MediaGalleryHelper.cs" />
+    <Compile Include="ViewHelpers\PhotoDragDpopHelper.cs" />
+    <Compile Include="ViewHelpers\Segmentation.cs" />
+    <Compile Include="ViewHelpers\SegmentationHelpers.cs" />
+    <Compile Include="ViewHelpers\StorageManagerDialogsProvider.cs" />
+    <Compile Include="ViewHelpers\ThumbHelper.cs" />
+    <Compile Include="ViewHelpers\TrackBarWithSpinHelper.cs" />
+    <Compile Include="ViewHelpers\UtilsHelper.cs" />
+    <Compile Include="View\AddFilesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AddFilesForm.Designer.cs">
+      <DependentUpon>AddFilesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddStorageMediaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AddStorageMediaForm.Designer.cs">
+      <DependentUpon>AddStorageMediaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\EditingControl.Designer.cs">
+      <DependentUpon>EditingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditingControls\BaseEditingUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\EditingControls\BasicAdjustmentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\EditingControls\BasicAdjustmentControl.Designer.cs">
+      <DependentUpon>BasicAdjustmentControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditingControls\ColorLabelsControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\EditingControls\ColorTrackBarControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\EditingControls\CropParamsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\EditingControls\CropParamsControl.Designer.cs">
+      <DependentUpon>CropParamsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditingControls\EditingControlLeftPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\EditingControls\EditingControlLeftPanel.Designer.cs">
+      <DependentUpon>EditingControlLeftPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditingControls\EditingControlRightPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\EditingControls\EditingControlRightPanel.Designer.cs">
+      <DependentUpon>EditingControlRightPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditingControls\HistogrammControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\EditingControls\MultiTrackBarControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\EditingControls\ScrollableSpinEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\EditingControls\ToneCurveControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\ExistingFileDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ExistingFileDialog.Designer.cs">
+      <DependentUpon>ExistingFileDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ExportControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\ExportControl.Designer.cs">
+      <DependentUpon>ExportControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ExportControls\ExportApplicationParams.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ExportControls\ExportApplicationParams.Designer.cs">
+      <DependentUpon>ExportApplicationParams.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ExportControls\FileRenameCustomizationDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ExportControls\FileRenameCustomizationDialog.Designer.cs">
+      <DependentUpon>FileRenameCustomizationDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ExportControls\PresetNameEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ExportControls\TemplateNameEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ExportControls\TemplateNameEditor.Designer.cs">
+      <DependentUpon>TemplateNameEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FilePropertiesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\FilePropertiesControl.Designer.cs">
+      <DependentUpon>FilePropertiesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\GeoLocationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\GeoLocationControl.Designer.cs">
+      <DependentUpon>GeoLocationControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\HistogramControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\HistogramControl.Designer.cs">
+      <DependentUpon>HistogramControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ImportControls\FileExplorerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\ImportControls\FileExplorerControl.Designer.cs">
+      <DependentUpon>FileExplorerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\LibraryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\LibraryControl.Designer.cs">
+      <DependentUpon>LibraryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\MapControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\MapControl.Designer.cs">
+      <DependentUpon>MapControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\NotificationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\NotificationForm.Designer.cs">
+      <DependentUpon>NotificationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PhotoMapItem.cs" />
+    <Compile Include="View\PopupViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PopupViewer.Designer.cs">
+      <DependentUpon>PopupViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\PrintControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\PrintControl.Designer.cs">
+      <DependentUpon>PrintControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ProgressForm.Designer.cs">
+      <DependentUpon>ProgressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProjectPropertiesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ProjectPropertiesForm.Designer.cs">
+      <DependentUpon>ProjectPropertiesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProjectsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\ProjectsControl.Designer.cs">
+      <DependentUpon>ProjectsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\SplashScreenForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SplashScreenForm.Designer.cs">
+      <DependentUpon>SplashScreenForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\StorageControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\StorageControl.Designer.cs">
+      <DependentUpon>StorageControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\StorageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\StorageForm.Designer.cs">
+      <DependentUpon>StorageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\StorageMediaControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\StorageMediaControl.Designer.cs">
+      <DependentUpon>StorageMediaControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\TagDropDownControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\TagSelectionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\TagSelectionControl.Designer.cs">
+      <DependentUpon>TagSelectionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\ViewControlBase.Designer.cs">
+      <DependentUpon>ViewControlBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ViewerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\ViewerControl.Designer.cs">
+      <DependentUpon>ViewerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\WaitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\WaitForm.Designer.cs">
+      <DependentUpon>WaitForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\WatermarkControls\WatermarkPreviewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\WatermarkControls\WatermarkPreviewControl.Designer.cs">
+      <DependentUpon>WatermarkPreviewControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\WatermarkPropertyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\WatermarkPropertyControl.Designer.cs">
+      <DependentUpon>WatermarkPropertyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\WebControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\WebControl.Designer.cs">
+      <DependentUpon>WebControl.cs</DependentUpon>
+    </Compile>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Resources\WebGalleries\angular_gallery.zip" />
+    <None Include="Resources\WebGalleries\diapo.zip" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AddFilesForm.resx">
+      <DependentUpon>AddFilesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AddStorageMediaForm.resx">
+      <DependentUpon>AddStorageMediaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditingControl.resx">
+      <DependentUpon>EditingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditingControls\BasicAdjustmentControl.resx">
+      <DependentUpon>BasicAdjustmentControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditingControls\CropParamsControl.resx">
+      <DependentUpon>CropParamsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditingControls\EditingControlLeftPanel.resx">
+      <DependentUpon>EditingControlLeftPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditingControls\EditingControlRightPanel.resx">
+      <DependentUpon>EditingControlRightPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ExistingFileDialog.resx">
+      <DependentUpon>ExistingFileDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ExportControl.resx">
+      <DependentUpon>ExportControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ExportControls\ExportApplicationParams.resx">
+      <DependentUpon>ExportApplicationParams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ExportControls\FileRenameCustomizationDialog.resx">
+      <DependentUpon>FileRenameCustomizationDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ExportControls\TemplateNameEditor.resx">
+      <DependentUpon>TemplateNameEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FilePropertiesControl.resx">
+      <DependentUpon>FilePropertiesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\GeoLocationControl.resx">
+      <DependentUpon>GeoLocationControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\HistogramControl.resx">
+      <DependentUpon>HistogramControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ImportControls\FileExplorerControl.resx">
+      <DependentUpon>FileExplorerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\LibraryControl.resx">
+      <DependentUpon>LibraryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MapControl.resx">
+      <DependentUpon>MapControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\NotificationForm.resx">
+      <DependentUpon>NotificationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PopupViewer.resx">
+      <DependentUpon>PopupViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PrintControl.resx">
+      <DependentUpon>PrintControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ProgressForm.resx">
+      <DependentUpon>ProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ProjectPropertiesForm.resx">
+      <DependentUpon>ProjectPropertiesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ProjectsControl.resx">
+      <DependentUpon>ProjectsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SplashScreenForm.resx">
+      <DependentUpon>SplashScreenForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\StorageControl.resx">
+      <DependentUpon>StorageControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\StorageForm.resx">
+      <DependentUpon>StorageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\StorageMediaControl.resx">
+      <DependentUpon>StorageMediaControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TagSelectionControl.resx">
+      <DependentUpon>TagSelectionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ViewerControl.resx">
+      <DependentUpon>ViewerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\WaitForm.resx">
+      <DependentUpon>WaitForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\WatermarkControls\WatermarkPreviewControl.resx">
+      <DependentUpon>WatermarkPreviewControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\WatermarkPropertyControl.resx">
+      <DependentUpon>WatermarkPropertyControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\WebControl.resx">
+      <DependentUpon>WebControl.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PhotoAssistant.Controls.Win\PhotoAssistant.Controls.Win.csproj">
+      <Project>{20960d27-e161-4f0a-bf6c-cd19e655bd0c}</Project>
+      <Name>PhotoAssistant.Controls.Win</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotoAssistant.Controls.Wpf\PhotoAssistant.Controls.Wpf.csproj">
+      <Project>{973f5def-6e44-4253-a6f8-f312579e60bb}</Project>
+      <Name>PhotoAssistant.Controls.Wpf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotoAssistant.Core\PhotoAssistant.Core.csproj">
+      <Project>{f544bbcb-efd8-4225-bcd5-9e784bce0031}</Project>
+      <Name>PhotoAssistant.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\CameraIconSmall.png" />
+    <Content Include="Resources\ColorLabelEmptyGlyph.png" />
+    <Content Include="Resources\ColorLabelEmptyHoverGlyph.png" />
+    <Content Include="Resources\ColorLabelHoverGlyph.png" />
+    <Content Include="Resources\ColorLabelNormalGlyph.png" />
+    <Content Include="Resources\DefaultTags.xml" />
+    <Content Include="Resources\ImageNotFound.png" />
+    <Content Include="Resources\lena_std1.jpg" />
+    <Content Include="Resources\LocationIcon_Pirates.png" />
+    <Content Include="Resources\PhotoBorder.png" />
+    <Content Include="Resources\print_32x32.png" />
+    <Content Include="Resources\SelectionGlyph.png" />
+    <Content Include="Resources\SplashScreenImage.jpg" />
+    <Content Include="Resources\SplashScreenImageBig.jpg" />
+    <Content Include="Resources\venera-urbinskaya-tician-vechellio.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\StorageControls\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

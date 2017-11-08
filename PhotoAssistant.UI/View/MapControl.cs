@@ -162,7 +162,7 @@ namespace PhotoAssistant.UI.View {
             if(viewInfo == null)
                 return 0;
             SkinElementInfo info = viewInfo.GetItemBackgroundInfo();
-            Rectangle bounds = ObjectPainter.CalcBoundsByClientRectangle(null, SkinElementPainter.Default, info, new Rectangle(0, 0, 100, 100));
+            Rectangle bounds = ObjectPainter.CalcBoundsByClientRectangle((GraphicsCache)null, SkinElementPainter.Default, info, new Rectangle(0, 0, 100, 100));
             return bounds.Width - 100;
         }
 
