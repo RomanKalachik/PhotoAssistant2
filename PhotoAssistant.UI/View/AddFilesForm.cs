@@ -74,7 +74,6 @@ namespace PhotoAssistant.UI.View {
             if(index == DevExpress.XtraGrid.GridControl.InvalidRowHandle)
                 return;
             DmFile model = ImportDataSource.Files[index] as DmFile;
-
             e.ThumbnailImage = ImportDataSource.GetThumbnail(model);
         }
         void fileExplorerControl1_SourcePathCanged(object sender, EventArgs e) {
@@ -188,11 +187,10 @@ namespace PhotoAssistant.UI.View {
         }
         Image IImportDataSource.GetThumbnail(DmFile file) {
 
-            //Indexer.Indexer indexer = new Indexer.Indexer(null, null, null);
-            //indexer.ThumbSize = SettingsStore.Default.ThumbSize;
-            //indexer.PreviewSize = SettingsStore.Default.PreviewSize;
-            //return indexer.ExtractThumb(file.ImportPath);
-            return null;
+            PhotoAssistant.Indexer.Indexer indexer = new PhotoAssistant.Indexer.Indexer();
+            indexer.ThumbSize = SettingsStore.Default.ThumbSize;
+            indexer.PreviewSize = SettingsStore.Default.PreviewSize;
+            return indexer.ExtractThumb(file.ImportPath);
         }
         void IImportDataSource.ReleaseTempResources() { }
 
