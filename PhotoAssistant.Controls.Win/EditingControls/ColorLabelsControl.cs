@@ -157,8 +157,8 @@ namespace PhotoAssistant.Controls.Win.EditingControls {
         }
 
         private void DrawBackground(ControlGraphicsInfoArgs e) {
-            if(!BaseEditPainter.DrawParentBackground((BaseEditViewInfo)e.ViewInfo, e.Cache))
-                e.Paint.FillRectangle(e.Graphics, e.Cache.GetSolidBrush(e.ViewInfo.PaintAppearance.BackColor), e.ViewInfo.ClientRect);
+            //if(!BaseEditPainter.DrawParentBackground((BaseEditViewInfo)e.ViewInfo, e.Cache))
+            //    e.Paint.FillRectangle(e.Graphics, e.Cache.GetSolidBrush(e.ViewInfo.PaintAppearance.BackColor), e.ViewInfo.ClientRect);
         }
 
         protected virtual void DrawLabels(ControlGraphicsInfoArgs info) {

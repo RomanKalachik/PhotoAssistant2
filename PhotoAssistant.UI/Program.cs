@@ -19,6 +19,7 @@ namespace PhotoAssistant.UI{
         /// </summary>
         [STAThread]
         static void Main() {
+            WindowsFormsSettings.ForceDirectXPaint();
             Application.SetCompatibleTextRenderingDefault(false);
             ((DevExpress.LookAndFeel.Design.UserLookAndFeelDefault)DevExpress.LookAndFeel.Design.UserLookAndFeelDefault.Default).LoadSettings(() => { });
             DevExpress.Utils.BrowserEmulationHelper.DisableBrowserEmulation(System.Reflection.Assembly.GetEntryAssembly().GetName().Name);

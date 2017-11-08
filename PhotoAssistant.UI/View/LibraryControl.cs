@@ -36,6 +36,7 @@ using PhotoAssistant.Core.Model;
 using PhotoAssistant.Controls.Wpf;
 using PhotoAssistant.Core;
 using PhotoAssistant.UI.ViewHelpers;
+using PhotoAssistant.Indexer;
 
 namespace PhotoAssistant.UI.View {
     public partial class LibraryControl : ViewControlBase {
@@ -411,14 +412,15 @@ namespace PhotoAssistant.UI.View {
         void CommitFilesToModel(AddFilesForm importForm) {
             if(importForm == null) return;
             //Indexer.Indexer indexer = new Indexer.Indexer(OnIndexerProcessFile, OnIndexerProcessStarted, OnIndexerProcessCompleted);
-            //indexer.Model = Model;
-            //indexer.ThumbSize = SettingsStore.Default.ThumbSize;
-            //indexer.PreviewSize = SettingsStore.Default.PreviewSize;
+            Indexer.Indexer indexer = new Indexer.Indexer();
+            indexer.Model = Model;
+            indexer.ThumbSize = SettingsStore.Default.ThumbSize;
+            indexer.PreviewSize = SettingsStore.Default.PreviewSize;
             //indexer.StorageManager = StorageManager.Default;
             //indexer.StorageManagerDialogsProvider = StorageManagerDialogsProvider.Default;
-            //Stopwatch = new System.Diagnostics.Stopwatch();
-            //Stopwatch.Start();
-            //indexer.ProcessFiles(importForm.GetFilesToAdd().Select(file => file.ImportPath).ToArray());
+            Stopwatch = new System.Diagnostics.Stopwatch();
+            Stopwatch.Start();
+            indexer.ProcessFiles(importForm.GetFilesToAdd().Select(file => file.ImportPath).ToArray());
         }
 
         NotificationForm addFileInfoForm;

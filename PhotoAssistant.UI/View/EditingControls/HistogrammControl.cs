@@ -489,7 +489,7 @@ namespace PhotoAssistant.UI.View.EditingControls {
             return ImageResourceCache.Default.GetImage("grayscaleimages/chart/chart_16x16.png");
         }
 
-        protected virtual ContextButton CreateShowHighlightClippingButton() {
+        protected virtual ContextButtonBase CreateShowHighlightClippingButton() {
             CheckContextButton res = new CheckContextButton();
             res.ToolTip = "Show Highlight Clipping";
             res.CheckedGlyph = res.HoverCheckedGlyph = res.HoverGlyph = res.Glyph = ImageResourceCache.Default.GetImage("grayscaleimages/actions/show_16x16.png");
@@ -502,7 +502,7 @@ namespace PhotoAssistant.UI.View.EditingControls {
             return res;
         }
 
-        protected virtual ContextButton CreateShowShadowClippingButton() {
+        protected virtual ContextButtonBase CreateShowShadowClippingButton() {
             CheckContextButton res = new CheckContextButton();
             res.ToolTip = "Show Shadow Clipping";
             res.CheckedGlyph = res.HoverCheckedGlyph = res.HoverGlyph = res.Glyph = ImageResourceCache.Default.GetImage("grayscaleimages/actions/show_16x16.png");
@@ -1228,6 +1228,9 @@ namespace PhotoAssistant.UI.View.EditingControls {
                 OnPropertiesChanged();
             }
         }
+
+        int IContextItemCollectionOptionsOwner.ChangeIndex { get; set; }
+        int IContextItemCollectionOwner.ChangeIndex { get; set; }
 
         protected internal void SaveLabels() {
             SavedLabels = new List<string>();

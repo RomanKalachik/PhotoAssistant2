@@ -158,7 +158,7 @@ namespace PhotoAssistant.UI.View.EditingControls {
         }
 
         private void DrawBackground(ControlGraphicsInfoArgs e) {
-            if(!BaseEditPainter.DrawParentBackground((BaseEditViewInfo)e.ViewInfo, e.Cache))
+            //if(!BaseEditPainter.DrawParentBackground((BaseEditViewInfo)e.ViewInfo, e.Cache))
                 e.Paint.FillRectangle(e.Graphics, e.Cache.GetSolidBrush(e.ViewInfo.PaintAppearance.BackColor), e.ViewInfo.ClientRect);
         }
 
