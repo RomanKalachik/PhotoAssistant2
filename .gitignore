@@ -1,7 +1,6 @@
 Makefile
 CMakeCache.txt
 install_manifest.txt
-libPhotoAssistantImageProcessing.dll
 *.log
 *.a
 1

@@ -44,13 +44,18 @@ public class PreviewImage : global::System.IDisposable {
     if (libPhotoAssistantImageProcessingPINVOKE.SWIGPendingException.Pending) throw libPhotoAssistantImageProcessingPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public System.IntPtr getImagePtr() {
-    global::System.IntPtr cPtr = libPhotoAssistantImageProcessingPINVOKE.PreviewImage_getImagePtr(swigCPtr);
-    //SWIGTYPE_p_unsigned_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);
-    return cPtr;
-  }
+  //public System.IntPtr getImagePtr() {
+  //  global::System.IntPtr cPtr = libPhotoAssistantImageProcessingPINVOKE.PreviewImage_getImagePtr(swigCPtr);
+  //  //SWIGTYPE_p_unsigned_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);
+  //  return cPtr;
+  //}
+        public SWIGTYPE_p_unsigned_char getImagePtr() {
+            global::System.IntPtr cPtr = libPhotoAssistantImageProcessingPINVOKE.PreviewImage_getImagePtr(swigCPtr);
+            SWIGTYPE_p_unsigned_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);
+            return ret;
+        }
 
-  public int getWidth() {
+        public int getWidth() {
     int ret = libPhotoAssistantImageProcessingPINVOKE.PreviewImage_getWidth(swigCPtr);
     return ret;
   }
