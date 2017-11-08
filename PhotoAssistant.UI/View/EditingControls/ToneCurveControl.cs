@@ -13,6 +13,7 @@ using DevExpress.Skins;
 using System.Collections.ObjectModel;
 using DevExpress.Utils.Drawing;
 using DevExpress.Utils;
+using PhotoAssistant.Controls.Win.EditingControls;
 
 namespace PhotoAssistant.UI.View.EditingControls {
     [ToolboxItem(true)]

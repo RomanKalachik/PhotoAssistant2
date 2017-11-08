@@ -46,6 +46,11 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Design" />
@@ -292,12 +297,6 @@
     <Compile Include="View\EditingControls\BasicAdjustmentControl.Designer.cs">
       <DependentUpon>BasicAdjustmentControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\EditingControls\ColorLabelsControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="View\EditingControls\ColorTrackBarControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="View\EditingControls\CropParamsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -317,12 +316,6 @@
       <DependentUpon>EditingControlRightPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="View\EditingControls\HistogrammControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="View\EditingControls\MultiTrackBarControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="View\EditingControls\ScrollableSpinEdit.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\EditingControls\ToneCurveControl.cs">
@@ -510,6 +503,7 @@
       <DependentUpon>WebControl.cs</DependentUpon>
     </Compile>
     <None Include="App.config" />
+    <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -645,6 +639,10 @@
     <ProjectReference Include="..\PhotoAssistant.Core\PhotoAssistant.Core.csproj">
       <Project>{f544bbcb-efd8-4225-bcd5-9e784bce0031}</Project>
       <Name>PhotoAssistant.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotoAssistant.Indexer\PhotoAssistant.Indexer.csproj">
+      <Project>{f2eab0f9-966d-4553-8a17-7163fc7bc0b3}</Project>
+      <Name>PhotoAssistant.Indexer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -12,6 +12,7 @@ using DevExpress.XtraEditors.ViewInfo;
 using DevExpress.XtraEditors.Drawing;
 using System.Windows.Forms;
 using System.Drawing;
+using PhotoAssistant.Controls.Win.EditingControls;
 
 namespace PhotoAssistant.UI.View.EditingControls {
     [UserRepositoryItem("Register")]
@@ -62,72 +63,72 @@ namespace PhotoAssistant.UI.View.EditingControls {
         }
     }
 
-    [ToolboxItem(true)]
-    public class ScrollableSpinEdit : SpinEdit {
-        static ScrollableSpinEdit() {
-            RepositoryItemScrollableSpinEdit.Register();
-        }
-        public override string EditorTypeName {
-            get { return RepositoryItemScrollableSpinEdit.EditorName; }
-        }
-        public new RepositoryItemScrollableSpinEdit Properties {
-            get { return (RepositoryItemScrollableSpinEdit)base.Properties; }
-        }
-        protected override TextBoxMaskBox CreateMaskBoxInstance() {
-            return new ScrollableSpinEditMaskBox(this) { Visible = false };
-        }
-        protected override void OnMaskBox_LostFocus(object sender, EventArgs e) {
-            base.OnMaskBox_LostFocus(sender, e);
-            BeginInvoke(new MethodInvoker(HideMaskBox));
-        }
-        protected internal bool AllowMaskBox { get; set; }
-        protected internal void HideMaskBox() {
-            AllowMaskBox = false;
-            //MaskBox.Visible = false;
-            LayoutChanged();
-        }
-        protected internal void ShowMaskBox() {
-            AllowMaskBox = true;
-            //MaskBox.Visible = true;
-            LayoutChanged();
-            MaskBox.Focus();
-        }
+    //[ToolboxItem(true)]
+    //public class ScrollableSpinEdit : SpinEdit {
+    //    static ScrollableSpinEdit() {
+    //        RepositoryItemScrollableSpinEdit.Register();
+    //    }
+    //    public override string EditorTypeName {
+    //        get { return RepositoryItemScrollableSpinEdit.EditorName; }
+    //    }
+    //    public new RepositoryItemScrollableSpinEdit Properties {
+    //        get { return (RepositoryItemScrollableSpinEdit)base.Properties; }
+    //    }
+    //    protected override TextBoxMaskBox CreateMaskBoxInstance() {
+    //        return new ScrollableSpinEditMaskBox(this) { Visible = false };
+    //    }
+    //    protected override void OnMaskBox_LostFocus(object sender, EventArgs e) {
+    //        base.OnMaskBox_LostFocus(sender, e);
+    //        BeginInvoke(new MethodInvoker(HideMaskBox));
+    //    }
+    //    protected internal bool AllowMaskBox { get; set; }
+    //    protected internal void HideMaskBox() {
+    //        AllowMaskBox = false;
+    //        //MaskBox.Visible = false;
+    //        LayoutChanged();
+    //    }
+    //    protected internal void ShowMaskBox() {
+    //        AllowMaskBox = true;
+    //        //MaskBox.Visible = true;
+    //        LayoutChanged();
+    //        MaskBox.Focus();
+    //    }
 
-        protected override void OnMouseMove(MouseEventArgs e) {
-            base.OnMouseMove(e);
-            Handler.OnMouseMove(e);
-        }
-        protected override void OnMouseDown(MouseEventArgs e) {
-            if(Handler.OnMouseDown(e))
-                return;
-            base.OnMouseDown(e);
-        }
-        protected override void OnMouseUp(MouseEventArgs e) {
-            if(Handler.OnMouseUp(e))
-                return;
-            base.OnMouseUp(e);
-        }
-        protected override void OnMouseEnter(EventArgs e) {
-            base.OnMouseEnter(e);
-            Handler.OnMouseEnter(e);
-        }
-        protected override void OnMouseLeave(EventArgs e) {
-            base.OnMouseLeave(e);
-            Handler.OnMouseLeave(e);
-        }
+    //    protected override void OnMouseMove(MouseEventArgs e) {
+    //        base.OnMouseMove(e);
+    //        Handler.OnMouseMove(e);
+    //    }
+    //    protected override void OnMouseDown(MouseEventArgs e) {
+    //        if(Handler.OnMouseDown(e))
+    //            return;
+    //        base.OnMouseDown(e);
+    //    }
+    //    protected override void OnMouseUp(MouseEventArgs e) {
+    //        if(Handler.OnMouseUp(e))
+    //            return;
+    //        base.OnMouseUp(e);
+    //    }
+    //    protected override void OnMouseEnter(EventArgs e) {
+    //        base.OnMouseEnter(e);
+    //        Handler.OnMouseEnter(e);
+    //    }
+    //    protected override void OnMouseLeave(EventArgs e) {
+    //        base.OnMouseLeave(e);
+    //        Handler.OnMouseLeave(e);
+    //    }
 
-        ScrollableSpinEditHandler handler;
-        protected ScrollableSpinEditHandler Handler {
-            get {
-                if(handler == null)
-                    handler = CreateHandler();
-                return handler;
-            }
-        }
-        protected virtual ScrollableSpinEditHandler CreateHandler() {
-            return new ScrollableSpinEditHandler(this);
-        }
-    }
+    //    ScrollableSpinEditHandler handler;
+    //    protected ScrollableSpinEditHandler Handler {
+    //        get {
+    //            if(handler == null)
+    //                handler = CreateHandler();
+    //            return handler;
+    //        }
+    //    }
+    //    protected virtual ScrollableSpinEditHandler CreateHandler() {
+    //        return new ScrollableSpinEditHandler(this);
+    //    }
+    //}
 
     public class ScrollableSpinEditMaskBox : TextBoxMaskBox {
         public ScrollableSpinEditMaskBox(TextEdit owner) : base(owner) { }

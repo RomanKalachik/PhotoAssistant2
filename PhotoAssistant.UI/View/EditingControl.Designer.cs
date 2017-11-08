@@ -1,5 +1,6 @@
 ﻿
 using DevExpress.XtraEditors;
+using PhotoAssistant.Controls.Win.EditingControls;
 using PhotoAssistant.UI.View.EditingControls;
 
 namespace PhotoAssistant.UI.View {
@@ -56,7 +57,7 @@ namespace PhotoAssistant.UI.View {
             this.riRating = new DevExpress.XtraEditors.Repository.RepositoryItemRatingControl();
             this.blcColorLabels = new DevExpress.XtraBars.BarLinkContainerExItem();
             this.beColorLabel = new DevExpress.XtraBars.BarEditItem();
-            this.riColorLabel = new EditingControls.RepositoryItemColorLabelControl();
+            this.riColorLabel = new RepositoryItemColorLabelControl();
             this.blcMark = new DevExpress.XtraBars.BarLinkContainerExItem();
             this.bcMark = new DevExpress.XtraBars.BarCheckItem();
             this.bcReject = new DevExpress.XtraBars.BarCheckItem();

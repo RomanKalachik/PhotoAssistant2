@@ -20,6 +20,7 @@ using PhotoAssistant.Core.Model;
 using PhotoAssistant.Controls.Wpf;
 using PhotoAssistant.Core;
 using PhotoAssistant.UI.View.EditingControls;
+using PhotoAssistant.Controls.Win.EditingControls;
 
 namespace PhotoAssistant.UI.View {
     public partial class EditingControl : ViewControlBase {

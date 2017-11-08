@@ -60,7 +60,7 @@ namespace PhotoAssistant.Controls.Win.EditingControls {
             AllowMaskBox = false;
             LayoutChanged();
         }
-        protected internal void ShowMaskBox() {
+        public void ShowMaskBox() {
             AllowMaskBox = true;
             LayoutChanged();
             MaskBox.Focus();

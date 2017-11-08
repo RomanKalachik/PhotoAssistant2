@@ -1,4 +1,6 @@
-﻿namespace PhotoAssistant.UI.View.EditingControls {
+﻿using PhotoAssistant.Controls.Win.EditingControls;
+
+namespace PhotoAssistant.UI.View.EditingControls {
     partial class EditingControlRightPanel {
         /// <summary> 
         /// Required designer variable.
@@ -33,10 +35,10 @@
             this.accordionContentContainer1 = new DevExpress.XtraBars.Navigation.AccordionContentContainer();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.colorPickerLabel = new DevExpress.XtraEditors.LabelControl();
-            this.speTintColor = new EditingControls.ScrollableSpinEdit();
-            this.speTempColor = new EditingControls.ScrollableSpinEdit();
-            this.tbTintColor = new EditingControls.ColorTrackBarControl();
-            this.tbTempColor = new EditingControls.ColorTrackBarControl();
+            this.speTintColor = new ScrollableSpinEdit();
+            this.speTempColor = new ScrollableSpinEdit();
+            this.tbTintColor = new ColorTrackBarControl();
+            this.tbTempColor = new ColorTrackBarControl();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -45,15 +47,15 @@
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.accordionContentContainer2 = new DevExpress.XtraBars.Navigation.AccordionContentContainer();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
-            this.speToneShadows = new EditingControls.ScrollableSpinEdit();
-            this.speToneDarks = new EditingControls.ScrollableSpinEdit();
-            this.speToneLights = new EditingControls.ScrollableSpinEdit();
-            this.speToneHighlights = new EditingControls.ScrollableSpinEdit();
-            this.tbShadowsTone = new EditingControls.ColorTrackBarControl();
-            this.tbDarksTone = new EditingControls.ColorTrackBarControl();
-            this.tbLightsTone = new EditingControls.ColorTrackBarControl();
-            this.tbHighlightsTone = new EditingControls.ColorTrackBarControl();
-            this.toneCurveControl1 = new EditingControls.ToneCurveControl();
+            this.speToneShadows = new ScrollableSpinEdit();
+            this.speToneDarks = new ScrollableSpinEdit();
+            this.speToneLights = new ScrollableSpinEdit();
+            this.speToneHighlights = new ScrollableSpinEdit();
+            this.tbShadowsTone = new ColorTrackBarControl();
+            this.tbDarksTone = new ColorTrackBarControl();
+            this.tbLightsTone = new ColorTrackBarControl();
+            this.tbHighlightsTone = new ColorTrackBarControl();
+            this.toneCurveControl1 = new ToneCurveControl();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();

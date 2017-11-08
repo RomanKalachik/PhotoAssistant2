@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PhotoAssistant.Core.Model;
 using PhotoAssistant.UI.ViewHelpers;
+using PhotoAssistant.Controls.Win.EditingControls;
 
 namespace PhotoAssistant.UI.View.EditingControls {
     public partial class EditingControlRightPanel : BaseEditingUserControl {

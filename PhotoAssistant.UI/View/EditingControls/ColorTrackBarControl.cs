@@ -96,22 +96,22 @@ namespace PhotoAssistant.UI.View.EditingControls {
         }
     }
 
-    public class ColorTrackBarControl : MultiTrackBarControl {
+    //public class ColorTrackBarControl : MultiTrackBarControl {
 
-        static ColorTrackBarControl() {
-            RepositoryItemColorTrackBarControl.RegisterColor();
-        }
+    //    static ColorTrackBarControl() {
+    //        RepositoryItemColorTrackBarControl.RegisterColor();
+    //    }
 
-        public override string EditorTypeName {
-            get {
-                return RepositoryItemColorTrackBarControl.ColorEditorName;
-            }
-        }
+    //    public override string EditorTypeName {
+    //        get {
+    //            return RepositoryItemColorTrackBarControl.ColorEditorName;
+    //        }
+    //    }
 
-        public new RepositoryItemColorTrackBarControl Properties {
-            get { return base.Properties as RepositoryItemColorTrackBarControl; }
-        }
-    }
+    //    public new RepositoryItemColorTrackBarControl Properties {
+    //        get { return base.Properties as RepositoryItemColorTrackBarControl; }
+    //    }
+    //}
 
     public class ColorGradientStop {
         public float Position { get; set; }
