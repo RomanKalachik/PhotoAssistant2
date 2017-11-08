@@ -454,30 +454,29 @@ namespace PhotoAssistant.Indexer {
             Settings settings = new Settings();
             libPhotoAssistantImageProcessing.init(settings, ".", ".");
         }
-
-        ImageInfo LoadImageUsingDCRaw(string file) {
-            ImageInfo result = new ImageInfo();
-            PreviewImage image = null;
-            Bitmap bmp;
+        private ImageInfo GetBitmapFormImage(string file) {
             ImageData imageData = null;
+            PreviewImage image = null;
             try {
                 string fileExtension = Path.GetExtension(file).Substring(1);
-                if (fileExtension == "xmp" || fileExtension == "pp3" || fileExtension == "ini") return null;
+                if(fileExtension == "xmp" || fileExtension == "pp3" || fileExtension == "ini")
+                    return null;
                 image = new PreviewImage(file, fileExtension, PreviewImage.PreviewImageMode.PIM_EmbeddedOrRaw);
-                if (!image.IsValid()) return null;
+
+                Bitmap bmp;
                 int imageW = image.getWidth();
                 int imageH = image.getHeight();
                 Format imageFormat = image.getPixelFormat();
                 int imageStride = image.getStride();
-                var imagePointer = image.getImagePtr();
-
+                IntPtr imagePointer = SWIGTYPE_p_unsigned_char.getCPtr(image.getImagePtr()).Handle;
                 int bytes = imageStride * imageH;
-                var rgbValues = new byte[bytes];
-                Marshal.Copy(rgbValues, 0, imagePointer, bytes);
-
+                byte[] rgbValues;
+                rgbValues = new byte[bytes];
+                Marshal.Copy(imagePointer, rgbValues, 0, bytes);
                 bmp = new Bitmap(imageW, imageH, imageStride, System.Drawing.Imaging.PixelFormat.Format32bppRgb, Marshal.UnsafeAddrOfPinnedArrayElement(rgbValues, 0));
-
+                ImageInfo result = new ImageInfo();
                 imageData = new ImageData(file);
+
                 result.image = bmp;
                 result.height = imageH;//!!
                 result.width = imageW;
@@ -487,17 +486,17 @@ namespace PhotoAssistant.Indexer {
                 result.artist = "";
                 result.iso = imageData.getISOSpeed();
                 result.focalLength = (float)imageData.getFocalLen();
-                //result.flip = imageData.getOrientation() == "Vertical";
-                //result.flashUsed = imageData.getFNumber()
-                //result.colorDepth =imageData;
-                //result.dpi = imageData.Ge;
-
+                return result;
             } finally {
-                if (image != null) image.Dispose();
-                //bmp.Dispose();
-                if (imageData != null) imageData.Dispose();
+                    if(image != null)
+                        image.Dispose();
+                    //bmp.Dispose();
+                    if(imageData != null)
+                        imageData.Dispose();
             }
-            return result;
+        }
+        ImageInfo LoadImageUsingDCRaw(string file) {
+            return GetBitmapFormImage(file);
         }
         public Image ImageFromByteArray(byte[] imgData) {
             using (MemoryStream ms = new MemoryStream(imgData)) {
