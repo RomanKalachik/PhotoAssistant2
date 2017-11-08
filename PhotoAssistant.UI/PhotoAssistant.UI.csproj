@@ -12,10 +12,14 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -41,9 +45,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -149,6 +150,8 @@
     <Reference Include="DevExpress.XtraVerticalGrid.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
     <Reference Include="DevExpress.Mvvm.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+    </Reference>
+    <Reference Include="DevExpress.Xpf.CodeView.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
     <Reference Include="DevExpress.Xpf.Core.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
@@ -507,7 +510,6 @@
       <DependentUpon>WebControl.cs</DependentUpon>
     </Compile>
     <None Include="App.config" />
-    <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -643,10 +645,6 @@
     <ProjectReference Include="..\PhotoAssistant.Core\PhotoAssistant.Core.csproj">
       <Project>{f544bbcb-efd8-4225-bcd5-9e784bce0031}</Project>
       <Name>PhotoAssistant.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PhotoAssistant.Indexer\PhotoAssistant.Indexer.csproj">
-      <Project>{F2EAB0F9-966D-4553-8A17-7163FC7BC0B3}</Project>
-      <Name>PhotoAssistant.Indexer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

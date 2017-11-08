@@ -1,39 +1,38 @@
-﻿using System;
+﻿using PhotoAssistant.Core.Model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using PhotoAssistant.Core.Model;
-
 namespace PhotoAssistant.Controls.Wpf {
     public class WatermarkImageGenerator {
         static WatermarkImageGenerator defaultGenerator;
         public static WatermarkImageGenerator Default {
             get {
-                if(defaultGenerator == null)
+                if(defaultGenerator == null) {
                     defaultGenerator = new WatermarkImageGenerator();
+                }
+
                 return defaultGenerator;
             }
         }
-        public WatermarkImageGenerator() {
-            Cache = new List<WatermarkInfo>();
-        }
+        public WatermarkImageGenerator() => Cache = new List<WatermarkInfo>();
         public WatermarkInfo GenerateWatermarkImage(WatermarkParameters watermark, int width, int height, int dpix, int dpiy) {
             WatermarkInfo info = Cache == null ? null : Cache.FirstOrDefault((w) => w.Width == width && w.Height == height);
-            if(info != null && info.Bitmap != null)
+            if(info != null && info.Bitmap != null) {
                 return info;
+            }
+
             if(info == null) {
                 info = new WatermarkInfo() { Width = width, Height = height };
                 Cache.Add(info);
             }
 
-            double cw = width; //width * 96.0f / dpix;
-            double ch = height; //height * 96.0f / dpiy;
+            double cw = width;
+            double ch = height;
 
             WatermarkControl control = new WatermarkControl();
             control.Params = watermark;
@@ -59,7 +58,6 @@ namespace PhotoAssistant.Controls.Wpf {
 
             return info;
         }
-
         protected System.Drawing.Image RenderTargetBitmap2Image(RenderTargetBitmap renderTarget) {
             System.Windows.Media.Imaging.BitmapEncoder encoder = new System.Windows.Media.Imaging.PngBitmapEncoder();
             MemoryStream myStream = new MemoryStream();
@@ -69,43 +67,62 @@ namespace PhotoAssistant.Controls.Wpf {
             myStream.Seek(0, SeekOrigin.Begin);
             return System.Drawing.Image.FromStream(myStream);
         }
-
-        protected List<WatermarkInfo> Cache { get; set; }
+        protected List<WatermarkInfo> Cache {
+            get; set;
+        }
         public void CreateWatermarkCache(List<DmFile> files) {
             ClearWatermarkCache();
             Cache = new List<WatermarkInfo>();
             foreach(DmFile file in files) {
                 WatermarkInfo info = Cache.FirstOrDefault((w) => w.Width == file.Width && w.Height == file.Height);
-                if(info == null)
+                if(info == null) {
                     info = new WatermarkInfo() { Width = file.Width, Height = file.Height };
+                }
+
                 info.RefCount++;
             }
             Cache.Sort(new WatermarkInfoComparer());
 
-            if(Cache.Count > 5)
+            if(Cache.Count > 5) {
                 Cache.RemoveRange(5, Cache.Count - 5);
+            }
         }
-
         public void ClearWatermarkCache() {
-            if(Cache != null)
+            if(Cache != null) {
                 Cache.Clear();
+            }
+
             Cache = null;
         }
     }
-
     public class WatermarkInfoComparer : IComparer<WatermarkInfo> {
         int IComparer<WatermarkInfo>.Compare(WatermarkInfo x, WatermarkInfo y) {
-            if(x.RefCount > y.RefCount) return 1;
-            if(x.RefCount == y.RefCount) return 0;
+            if(x.RefCount > y.RefCount) {
+                return 1;
+            }
+
+            if(x.RefCount == y.RefCount) {
+                return 0;
+            }
+
             return -1;
         }
     }
-
     public class WatermarkInfo {
-        public int Width { get; set; }
-        public int Height { get; set; }
-        public int RefCount { get; set; }
-        public RenderTargetBitmap Bitmap { get; set; }
-        public System.Drawing.Image Image { get; set; }
+        public int Width {
+            get; set;
+        }
+        public int Height {
+            get; set;
+        }
+        public int RefCount {
+            get; set;
+        }
+        public RenderTargetBitmap Bitmap {
+            get; set;
+        }
+        public System.Drawing.Image Image {
+            get; set;
+        }
     }
 }

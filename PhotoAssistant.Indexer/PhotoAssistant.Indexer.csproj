@@ -12,10 +12,14 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -63,7 +67,6 @@
       <HintPath>..\dlls\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Data.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      
     </Reference>
     <Reference Include="System.Management" />
     <Reference Include="System.Printing" />

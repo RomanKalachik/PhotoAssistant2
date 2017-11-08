@@ -66,20 +66,17 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
-    <Reference Include="DevExpress.Data.v17.1, Version=17.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.Data.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Images.v17.1, Version=17.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4">
-      
+    <Reference Include="DevExpress.Images.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4">
+      <HintPath>..\dlls\DevExpress.Images.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Mvvm.v17.1, Version=17.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      
+    <Reference Include="DevExpress.Xpf.Core.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.Xpf.Core.v15.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Xpf.Core.v17.1, Version=17.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      
-    </Reference>
-    <Reference Include="DevExpress.Xpf.Themes.MetropolisDark.v17.1, Version=17.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      
+    <Reference Include="DevExpress.Xpf.Themes.MetropolisDark.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+      <HintPath>..\dlls\DevExpress.Xpf.Themes.MetropolisDark.v15.1.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
