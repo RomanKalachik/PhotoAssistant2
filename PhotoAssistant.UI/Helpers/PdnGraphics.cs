@@ -273,7 +273,7 @@ namespace PaintDotNet.SystemLayer {
             try {
                 DrawPolyLineImpl(g, color, points);
             } catch(Exception ex) {
-                Tracing.Ping("Exception while executing PdnGraphics.DrawPolyLine: " + ex.ToString());
+                Tracing.Ping("Exception while executing PdnCache.DrawPolyLine: " + ex.ToString());
             }
         }
 

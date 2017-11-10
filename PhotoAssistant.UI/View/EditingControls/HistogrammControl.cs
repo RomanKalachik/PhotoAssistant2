@@ -1837,13 +1837,15 @@ namespace PhotoAssistant.UI.View.EditingControls {
             int index = 1;
             for(float x = viewInfo.ChartBounds.X + deltaSmall; x <= viewInfo.ChartBounds.Right - 1; x += deltaSmall) {
                 bool isThickLine = index % 5 == 0;
-                info.Graphics.DrawLine(isThickLine? thickLine: thinLine, x, viewInfo.ChartBounds.Bottom, x, viewInfo.ChartBounds.Top);
+                Pen pen = isThickLine ? thickLine : thinLine;
+                info.Cache.DrawLine(x, viewInfo.ChartBounds.Bottom, x, viewInfo.ChartBounds.Top, pen.Color, 1);
                 index++;
             }
             index = 1;
             for(float y = viewInfo.ChartBounds.Bottom - deltaSmall; y >= viewInfo.ChartBounds.Top - 1; y -= deltaSmall) {
                 bool isThickLine = viewInfo.AllowDrawVerticalTickLine && (index % 5 == 0);
-                info.Graphics.DrawLine(isThickLine? thickLine : thinLine, viewInfo.ChartBounds.Left, y, viewInfo.ChartBounds.Right, y);
+                Pen pen = isThickLine ? thickLine : thinLine;
+                info.Cache.DrawLine(viewInfo.ChartBounds.Left, y, viewInfo.ChartBounds.Right, y, pen.Color, 1);
                 index++;
             }
         }
@@ -1903,16 +1905,16 @@ namespace PhotoAssistant.UI.View.EditingControls {
                     if(hasPrevPoint) {
                         //if(index1 == index2) {
                         if(viewInfo.DrawMonochrome) {
-                            info.Graphics.DrawLine(viewInfo.MonochromePen, pt0, pt3);
+                            info.Cache.DrawLine(pt0, pt3, viewInfo.MonochromePen.Color, 1);
                         }
                         else {
                             cp1 = viewInfo.GetPenColor(redValue, greenValue, blueValue, v1);
                             cp2 = viewInfo.GetPenColor(redValue, greenValue, blueValue, v2);
                             cp3 = viewInfo.GetPenColor(redValue, greenValue, blueValue, v3);
 
-                            info.Graphics.DrawLine(cp1, pt0, pt1);
-                            info.Graphics.DrawLine(cp2, pt1, pt2);
-                            info.Graphics.DrawLine(cp3, pt2, pt3);
+                            info.Cache.DrawLine(pt0, pt1, cp1.Color, 1);
+                            info.Cache.DrawLine(pt1, pt2, cp2.Color, 1);
+                            info.Cache.DrawLine(pt2, pt3, cp3.Color, 1);
                         }
                         
                         //}
@@ -1922,9 +1924,9 @@ namespace PhotoAssistant.UI.View.EditingControls {
                         //cb3 = viewInfo.GetBrushColor(redValue, greenValue, blueValue, v3);
 
                         //info.Graphics.FillPolygon(cb1, new Point[] { prevPt0, prevPt1, pt1, pt0 });
-                        //info.Graphics.DrawLine(cp1, pt0, pt1);
-                        //info.Graphics.DrawLine(cp2, pt1, pt2);
-                        //info.Graphics.DrawLine(cp3, pt2, pt3);
+                        //info.Cache.DrawLine(cp1, pt0, pt1);
+                        //info.Cache.DrawLine(cp2, pt1, pt2);
+                        //info.Cache.DrawLine(cp3, pt2, pt3);
                         //}
                     }
                 }
@@ -1937,11 +1939,11 @@ namespace PhotoAssistant.UI.View.EditingControls {
 
                     if(hasPrevPoint) {
                         if(viewInfo.AllowRedChannel)
-                            info.Graphics.DrawLine(viewInfo.DrawMonochrome? viewInfo.MonochromePen: redPen, prevPt1, pt1);
+                            info.Cache.DrawLine(prevPt1, pt1, (viewInfo.DrawMonochrome ? viewInfo.MonochromePen : redPen).Color, 1);
                         if(viewInfo.AllowGreenChannel)
-                            info.Graphics.DrawLine(viewInfo.DrawMonochrome ? viewInfo.MonochromePen : greenPen, prevPt2, pt2);
+                            info.Cache.DrawLine(prevPt2, pt2, (viewInfo.DrawMonochrome ? viewInfo.MonochromePen : greenPen).Color, 1);
                         if(viewInfo.AllowBlueChannel)
-                            info.Graphics.DrawLine(viewInfo.DrawMonochrome ? viewInfo.MonochromePen : bluePen, prevPt3, pt3);
+                            info.Cache.DrawLine(prevPt3, pt3, (viewInfo.DrawMonochrome ? viewInfo.MonochromePen : bluePen).Color, 1);
                     }
                 }
 

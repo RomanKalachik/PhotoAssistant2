@@ -411,13 +411,13 @@ namespace PhotoAssistant.UI.View {
         }
         void CommitFilesToModel(AddFilesForm importForm) {
             if(importForm == null) return;
-            //Indexer.Indexer indexer = new Indexer.Indexer(OnIndexerProcessFile, OnIndexerProcessStarted, OnIndexerProcessCompleted);
-            Indexer.Indexer indexer = new Indexer.Indexer();
+            Indexer.Indexer indexer = new Indexer.Indexer(OnIndexerProcessFile, OnIndexerProcessStarted, OnIndexerProcessCompleted);
+            //Indexer.Indexer indexer = new Indexer.Indexer();
             indexer.Model = Model;
             indexer.ThumbSize = SettingsStore.Default.ThumbSize;
             indexer.PreviewSize = SettingsStore.Default.PreviewSize;
-            //indexer.StorageManager = StorageManager.Default;
-            //indexer.StorageManagerDialogsProvider = StorageManagerDialogsProvider.Default;
+            indexer.StorageManager = StorageManager.Default;
+            indexer.StorageManagerDialogsProvider = StorageManagerDialogsProvider.Default;
             Stopwatch = new System.Diagnostics.Stopwatch();
             Stopwatch.Start();
             indexer.ProcessFiles(importForm.GetFilesToAdd().Select(file => file.ImportPath).ToArray());
@@ -867,7 +867,7 @@ namespace PhotoAssistant.UI.View {
                     animInfo.ActualUpperRight,
                     animInfo.ActualLowerLeft
                 };
-                e.Graphics.DrawImage(e.ItemInfo.ImageInfo.ThumbImage, pt);
+                e.Cache.DrawImage(e.ItemInfo.ImageInfo.ThumbImage, pt);
 
                 if(e.ItemInfo.AllowDrawCheckBox)
                     e.DrawItemCheckBox();

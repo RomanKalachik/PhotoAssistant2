@@ -122,7 +122,7 @@ namespace PaintDotNet.SystemLayer {
 
         /// <summary>
         /// Allocates a bitmap of the given height and width. Pixel data may be read/written directly, 
-        /// and it may be drawn to the screen using PdnGraphics.DrawBitmap().
+        /// and it may be drawn to the screen using PdnCache.DrawBitmap().
         /// </summary>
         /// <param name="width">The width of the bitmap to allocate.</param>
         /// <param name="height">The height of the bitmap to allocate.</param>
@@ -135,9 +135,9 @@ namespace PaintDotNet.SystemLayer {
         /// * The upper-left pixel of the bitmap (0,0) is located at the first memory location pointed to by the returned pointer.
         /// * The bitmap is top-down ("memory correct" ordering).
         /// * The 'handle' may be any type of data you want, but must be unique for the lifetime of the bitmap, and must not be IntPtr.Zero.
-        /// * The handle's value must be understanded by PdnGraphics.DrawBitmap().
+        /// * The handle's value must be understanded by PdnCache.DrawBitmap().
         /// * The bitmap is always modified by directly reading and writing to the memory pointed to by the return value.
-        /// * PdnGraphics.DrawBitmap() must always render from this memory location (i.e. it must treat the memory as 'volatile')
+        /// * PdnCache.DrawBitmap() must always render from this memory location (i.e. it must treat the memory as 'volatile')
         /// </remarks>
         public static IntPtr AllocateBitmap(int width, int height, out IntPtr handle) {
             NativeStructs.BITMAPINFO bmi = new NativeStructs.BITMAPINFO();

@@ -482,9 +482,9 @@ namespace PhotoAssistant.UI.View.EditingControls {
             ToneCurveControlViewInfo viewInfo = (ToneCurveControlViewInfo)info.ViewInfo;
             ToneCurveControl tc = (ToneCurveControl)viewInfo.HistogrammControl;
             PointF bottomPoint = new PointF((float)(viewInfo.ChartBounds.X + (viewInfo.ChartBounds.Width) * x), viewInfo.ChartBounds.Bottom);
-            info.Graphics.DrawLine(info.Cache.GetPen(tc.VerticalLineColor),
+            info.Cache.DrawLine(
                 new PointF((float)(viewInfo.ChartBounds.X + (viewInfo.ChartBounds.Width) * x), viewInfo.ChartBounds.Y),
-                bottomPoint);
+                bottomPoint, tc.VerticalLineColor, 1);
             viewInfo.LabelAppearance.DrawString(info.Cache, ((int)(x * 100)).ToString(), new Rectangle((int)bottomPoint.X + 5, (int)bottomPoint.Y - viewInfo.LabelAppearance.FontHeight, 100, viewInfo.LabelAppearance.FontHeight));
         }
 
@@ -502,7 +502,7 @@ namespace PhotoAssistant.UI.View.EditingControls {
                 Pen pen = info.Cache.GetPen(Color.FromArgb(200, viewInfo.PaintAppearance.ForeColor), 1);
                 pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Custom;
                 pen.DashPattern = new float[] { 0.5f, 5.0f };
-                info.Graphics.DrawLine(pen, new Point(viewInfo.ChartBounds.X, viewInfo.ChartBounds.Bottom), new Point(viewInfo.ChartBounds.Right, viewInfo.ChartBounds.Top));
+                info.Cache.DrawLine(pen, new Point(viewInfo.ChartBounds.X, viewInfo.ChartBounds.Bottom), new Point(viewInfo.ChartBounds.Right, viewInfo.ChartBounds.Top));
             }
             finally {
                 info.Graphics.SmoothingMode = mode;
@@ -704,7 +704,7 @@ namespace PhotoAssistant.UI.View.EditingControls {
                 PointF pointMax = ClientToScreen(new PointF((float)x, (float)maxy));
 
                 if(!prevPointMin.IsEmpty) {
-                    cache.Graphics.DrawLine(pen, pointMin, pointMax);
+                    cache.DrawLine(pointMin, pointMax, pen.Color, 1);
                 }
                 prevPointMin = pointMin;
                 prevPointMax = pointMax;
@@ -737,12 +737,11 @@ namespace PhotoAssistant.UI.View.EditingControls {
             RectangleF rect = GetPointBounds(graph, point);
             Pen pen = null;
             if(point.IsSelected)
-                pen = cache.GetPen(graph.SelectedColor, graph.SelectedWidth);
+                cache.DrawRectangle(rect.X, rect.Y, rect.Width, rect.Height, graph.SelectedColor, graph.SelectedWidth);
             else if(point.IsHovered)
-                pen = cache.GetPen(graph.HoverColor, graph.HoverWidth);
+                cache.DrawRectangle(rect.X, rect.Y, rect.Width, rect.Height, graph.HoverColor, graph.HoverWidth);
             else
-                pen = cache.GetPen(graph.Color, graph.Width);
-            cache.Graphics.DrawRectangle(pen, rect.X, rect.Y, rect.Width, rect.Height);
+                cache.DrawRectangle(rect.X, rect.Y, rect.Width, rect.Height, graph.Color, graph.Width);
         }
 
         private void DrawLine(GraphicsCache cache, Graph graph) {
@@ -756,12 +755,12 @@ namespace PhotoAssistant.UI.View.EditingControls {
                     if(graph.DrawShadow) {
                         PointF spoint = point; spoint.Y += graph.ShadowOffset; spoint.X += graph.ShadowOffset;
                         PointF prevSpoint = prevPoint; prevSpoint.Y += graph.ShadowOffset; prevSpoint.X += graph.ShadowOffset;
-                        cache.Graphics.DrawLine(cache.GetPen(graph.ShadowColor, graph.ShadowWidth), prevSpoint, spoint);
+                        cache.DrawLine(prevSpoint, spoint, graph.ShadowColor, graph.ShadowWidth);
                     }
                     Pen pen = IsPointBelongsToCurve(HoverCurve, x)? 
                         cache.GetPen(graph.HoverColor, graph.HoverWidth): 
                         cache.GetPen(graph.Color, graph.Width);
-                    cache.Graphics.DrawLine(pen, prevPoint, point);
+                    cache.DrawLine(prevPoint, point, pen.Color, 1);
                 }
                 prevPoint = point;
             }

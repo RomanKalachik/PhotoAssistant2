@@ -143,9 +143,9 @@ namespace PhotoAssistant.Controls.Win.EditingControls {
             DrawViewportBounds(info);
         }
         protected void DrawBounds(ControlGraphicsInfoArgs info, Rectangle rect) {
-            info.Graphics.DrawRectangle(info.Cache.GetPen(Color.White), rect);
+            info.Cache.DrawRectangle(info.Cache.GetPen(Color.White), rect);
             rect.Inflate(-1, -1);
-            info.Graphics.DrawRectangle(info.Cache.GetPen(Color.DarkGray), rect);
+            info.Cache.DrawRectangle(info.Cache.GetPen(Color.DarkGray), rect);
         }
         void DrawViewportBounds(ControlGraphicsInfoArgs info) {
             PictureNavigatorViewInfo vi = (PictureNavigatorViewInfo)info.ViewInfo;

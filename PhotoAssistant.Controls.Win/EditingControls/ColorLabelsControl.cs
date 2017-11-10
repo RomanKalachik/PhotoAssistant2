@@ -152,13 +152,15 @@ namespace PhotoAssistant.Controls.Win.EditingControls {
                 }
             }
         }
-        protected virtual void DrawSelection(ControlGraphicsInfoArgs info, Image selectionGlyph, Rectangle bounds) => info.Graphics.DrawImage(selectionGlyph, bounds);
-        void DrawLabel(ControlGraphicsInfoArgs info, Image glyph, Rectangle bounds, ImageAttributes attr) => info.Graphics.DrawImage(glyph, bounds, 0, 0, glyph.Width, glyph.Height, GraphicsUnit.Pixel, attr);
+        protected virtual void DrawSelection(ControlGraphicsInfoArgs info, Image selectionGlyph, Rectangle bounds) => info.Cache.DrawImage(selectionGlyph, bounds);
+        void DrawLabel(ControlGraphicsInfoArgs info, Image glyph, Rectangle bounds, ColorMatrix matrix) {
+            info.Cache.Paint.DrawImageWithColorMatrix(info.Graphics, glyph, bounds, 0, 0, glyph.Width, glyph.Height, matrix);
+        }
     }
     public class ColorLabelControlViewInfo : BaseEditViewInfo {
         public ColorLabelControlViewInfo(RepositoryItem item) : base(item) {
         }
-        protected internal ImageAttributes[] Attributes {
+        protected internal ColorMatrix[] Attributes {
             get; protected set;
         }
         public Rectangle[] LabelsBounds {
@@ -236,7 +238,7 @@ namespace PhotoAssistant.Controls.Win.EditingControls {
         }
         protected virtual void CreateAttributes() {
             ClearAttributes();
-            Attributes = new ImageAttributes[LabelItem.Labels.Count];
+            Attributes = new ColorMatrix[LabelItem.Labels.Count];
             for(int i = 0; i < Attributes.Length; i++) {
                 Attributes[i] = CreateImageAttributes(LabelItem.Labels[i]);
             }
@@ -249,7 +251,7 @@ namespace PhotoAssistant.Controls.Win.EditingControls {
             }
         }
         protected override bool AllowDrawParentBackground => true;
-        protected virtual ImageAttributes CreateImageAttributes(ColorLabel label) {
+        protected virtual ColorMatrix CreateImageAttributes(ColorLabel label) {
             float[][] m = new float[5][];
 
             Color color = IsEmptyLabel(LabelItem.Labels.IndexOf(label)) ? Color.White : label.Color;
@@ -259,20 +261,9 @@ namespace PhotoAssistant.Controls.Win.EditingControls {
             m[3] = new float[] { 0.0f, 0.0f, 0.0f, color.A / 255.0f, 0.0f };
             m[4] = new float[] { 0.0f, 0.0f, 0.0f, 0.0f, 1.0f };
 
-            ColorMatrix cm = new ColorMatrix(m);
-            ImageAttributes attr = new ImageAttributes();
-            attr.SetColorMatrix(cm);
-            return attr;
+            return new ColorMatrix(m);
         }
         protected virtual void ClearAttributes() {
-            if(Attributes == null) {
-                return;
-            }
-
-            for(int i = 0; i < Attributes.Length; i++) {
-                Attributes[i].Dispose();
-            }
-
             Attributes = null;
         }
         protected virtual Size CalcActualLabelSize() {

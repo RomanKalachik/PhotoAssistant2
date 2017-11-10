@@ -15,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using PhotoAssistant.Indexer.Wrappers;
 using PhotoAssistant.Core.Helpers;
+using System.Threading;
+
 namespace PhotoAssistant.Indexer {
 
     public class ImageInfo : IDisposable {
@@ -31,26 +33,27 @@ namespace PhotoAssistant.Indexer {
             thumbImage = null;
         }
     }
-    //public delegate void IndexerReportingCallback(DmFile file, int fileIndex, int filesCount);
+    public delegate void IndexerReportingCallback(DmFile file, int fileIndex, int filesCount);
 
     public class Indexer {
         static Indexer() {
             InitDCRaw();
         }
-        //IndexerReportingCallback reportProgressCallbackCore;
-        //Action0 processCompletedCallbackCore;
-        //Action1<int> processStartedCallbackCore;
-        //public Indexer(IndexerReportingCallback reportProgressCallback, Action1<int> processStartedCallback, Action0 processCompletedCallback) {
-        //    this.processStartedCallbackCore = processStartedCallback;
-        //    this.reportProgressCallbackCore = reportProgressCallback;
-        //    this.processCompletedCallbackCore = processCompletedCallback;
-        //}
+        IndexerReportingCallback reportProgressCallbackCore;
+        Action0 processCompletedCallbackCore;
+        Action1<int> processStartedCallbackCore;
+        public Indexer() : this(null, null, null) { }
+        public Indexer(IndexerReportingCallback reportProgressCallback, Action1<int> processStartedCallback, Action0 processCompletedCallback) {
+            this.processStartedCallbackCore = processStartedCallback;
+            this.reportProgressCallbackCore = reportProgressCallback;
+            this.processCompletedCallbackCore = processCompletedCallback;
+        }
         IEnumerable<string> Files { get; set; }
         int FilesCount { get; set; }
         public Size ThumbSize { get; set; }
         public Size PreviewSize { get; set; }
-        //public StorageManager StorageManager { get; set; }
-        //public IStorageManagerDialogsProvider StorageManagerDialogsProvider { get; set; }
+        public StorageManager StorageManager { get; set; }
+        public IStorageManagerDialogsProvider StorageManagerDialogsProvider { get; set; }
         public void ProcessFiles(string[] files) {
             if (!CheckStorage())
                 return;
@@ -58,12 +61,12 @@ namespace PhotoAssistant.Indexer {
             StartProcess();
         }
         private bool CheckStorage() {
-            //if(StorageManager == null) {
-            //    StorageManager = StorageManager.Default;
-            //    //StorageManager.DialogsProvider = StorageManagerDialogsProvider.Default;
-            //}
-            //return StorageManager.CheckStorage();
-            return true;
+            if(StorageManager == null) {
+                StorageManager = StorageManager.Default;
+                //StorageManager.DialogsProvider = StorageManager.Default.Dia PhotoAssistant.UI.ViewHelpers.StorageManagerDialogsProvider.Default;
+            }
+            return StorageManager.CheckStorage();
+            //return true;
         }
 
         public void Process(IndexerParameters parameters) {
@@ -80,45 +83,46 @@ namespace PhotoAssistant.Indexer {
             if (Model != null) Model.BeginAddFiles();
             FilesCount = Files.Count();
             Program.Log.Info(string.Format("{0} files to process", FilesCount));
-            DoWork();
-            ////if(processStartedCallbackCore != null)
-            ////    processStartedCallbackCore(FilesCount);
-            //CheckStorage();
-            //Thread thread = new Thread(new ThreadStart(DoWork));
-            //thread.SetApartmentState(ApartmentState.STA);
-            //thread.Start();
+            if(processStartedCallbackCore != null)
+                processStartedCallbackCore(FilesCount);
+            CheckStorage();
+            Thread thread = new Thread(new ThreadStart(DoWork));
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
         }
         void DoWork() {
             int index = 1;
             if (Model != null)
                 Model.Context.Configuration.AutoDetectChangesEnabled = false;
-            //SubscribeStorageManagerEvents();
+            SubscribeStorageManagerEvents();
             foreach (string file in Files) {
-                ProcessFile(file, index, FilesCount);
+                DmFile res = ProcessFile(file, index, FilesCount);
+                if(reportProgressCallbackCore != null)
+                    Application.OpenForms[0].BeginInvoke(reportProgressCallbackCore, res, index, FilesCount);
                 index++;
-                //if (FatalErrorOccured)
-                //    break;
+                if (FatalErrorOccured)
+                    break;
             }
             if (Model != null)
                 Model.Context.Configuration.AutoDetectChangesEnabled = true;
             if (Model != null) Model.EndAddFiles();
-            //if(processCompletedCallbackCore != null) {
-            //    Application.OpenForms[0].BeginInvoke(processCompletedCallbackCore);
-            //}
-            //UnsubscribeStorageManagerEvents();
+            if(processCompletedCallbackCore != null) {
+                Application.OpenForms[0].BeginInvoke(processCompletedCallbackCore);
+            }
+            UnsubscribeStorageManagerEvents();
         }
 
-        //private void UnsubscribeStorageManagerEvents() {
-        //    StorageManager.BackupVolumeChanged -= StorageManager_BackupVolumeChanged;
-        //    StorageManager.StorageVolumeChanged -= StorageManager_StorageVolumeChanged;
-        //    StorageManager.FileCopied -= StorageManager_FileCopied;
-        //}
+        private void UnsubscribeStorageManagerEvents() {
+            StorageManager.BackupVolumeChanged -= StorageManager_BackupVolumeChanged;
+            StorageManager.StorageVolumeChanged -= StorageManager_StorageVolumeChanged;
+            StorageManager.FileCopied -= StorageManager_FileCopied;
+        }
 
-        //private void SubscribeStorageManagerEvents() {
-        //    StorageManager.BackupVolumeChanged += StorageManager_BackupVolumeChanged;
-        //    StorageManager.StorageVolumeChanged += StorageManager_StorageVolumeChanged;
-        //    StorageManager.FileCopied += StorageManager_FileCopied;
-        //}
+        private void SubscribeStorageManagerEvents() {
+            StorageManager.BackupVolumeChanged += StorageManager_BackupVolumeChanged;
+            StorageManager.StorageVolumeChanged += StorageManager_StorageVolumeChanged;
+            StorageManager.FileCopied += StorageManager_FileCopied;
+        }
 
         protected DmFile FileToSave { get; set; }
 
@@ -134,15 +138,15 @@ namespace PhotoAssistant.Indexer {
             }
         }
 
-        //private void StorageManager_StorageVolumeChanged(object sender, EventArgs e) {
-        //    if(Model != null)
-        //        StorageVolumeModel = Model.CheckAddStorageVolume(StorageManager.StorageVolume);
-        //}
+        private void StorageManager_StorageVolumeChanged(object sender, EventArgs e) {
+            if(Model != null)
+                StorageVolumeModel = Model.CheckAddStorageVolume(StorageManager.StorageVolume);
+        }
 
-        //private void StorageManager_BackupVolumeChanged(object sender, EventArgs e) {
-        //    if(Model != null)
-        //        BackupVolumeModel = Model.CheckAddStorageVolume(StorageManager.BackupVolume);
-        //}
+        private void StorageManager_BackupVolumeChanged(object sender, EventArgs e) {
+            if(Model != null)
+                BackupVolumeModel = Model.CheckAddStorageVolume(StorageManager.BackupVolume);
+        }
 
         //[DllImport("RawProcessor.dll", EntryPoint = "main", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Cdecl)]
         //static extern ResultInfo main(int argc, IntPtr[] argv);
@@ -272,7 +276,7 @@ namespace PhotoAssistant.Indexer {
             Image reducedImage = null;
             Image previewImage = null;
             try {
-                image = LoadImageInfo(file);
+                image = LoadImageUsingWindowsImaging(file); //LoadImageInfo(file);
                 if (image == null) return null;//Properties.Resources.ImageNotFound;
                 previewImage = image.thumbImage != null && (image.thumbImage.Width >= PreviewSize.Width || image.thumbImage.Height >= PreviewSize.Height) ? ResizeImageToPreview(image.thumbImage) : ResizeImageToPreview(image.image);
                 reducedImage = previewImage == null ? ResizeImageToThumb(image.thumbImage) : ResizeImageToThumb(previewImage);
@@ -304,7 +308,7 @@ namespace PhotoAssistant.Indexer {
         DmStorageVolume StorageVolumeModel { get; set; }
         DmStorageVolume BackupVolumeModel { get; set; }
 
-        //protected bool FatalErrorOccured { get; set; }
+        protected bool FatalErrorOccured { get; set; }
 
         DmFile ProcessFileCore(string file) {
             DmFile model = null;
@@ -344,20 +348,20 @@ namespace PhotoAssistant.Indexer {
                 model.FocalLength = image.focalLength;
                 model.Flip = image.flip;
 
-                //CheckInitializeStorageVolumes();
-                //if(!CopyFile(file, model)) {
-                //    StorageManager.OnCopyFileFailed();
-                //    FatalErrorOccured = true;
-                //    return model;
-                //}
+                CheckInitializeStorageVolumes();
+                if(!CopyFile(file, model)) {
+                    StorageManager.OnCopyFileFailed();
+                    FatalErrorOccured = true;
+                    return model;
+                }
 
-                //model.FullPreviewFileName = model.FileNameWithoutExtension + "_Preview" + "." + model.Extension;
+                model.FullPreviewFileName = model.FileNameWithoutExtension + "_Preview" + "." + model.Extension;
                 //Image fullPreview = image.thumbImage;
-                //if (!StorageManager.SavePreviewFile(fullPreview, model.RelativePath, model.FullPreviewFileName)) {
-                //    StorageManager.OnCopyFileFailed();
-                //    FatalErrorOccured = true;
-                //    return model;
-                //}
+                if(!StorageManager.SavePreviewFile(reducedImage, model.RelativePath, model.FullPreviewFileName)) {
+                    StorageManager.OnCopyFileFailed();
+                    FatalErrorOccured = true;
+                    return model;
+                }
                 //fullPreview.Dispose();
 
                 model.Dpi = image.dpi;
@@ -371,56 +375,59 @@ namespace PhotoAssistant.Indexer {
             return model;
         }
 
-        //private bool CopyFile(string file, DmFile model) {
-        //    FileToSave = model;
-        //    try {
-        //        return StorageManager.CopyFile(file, model.RelativePath + "\\" + model.FileName);
-        //    } finally {
-        //        FileToSave = null;
-        //    }
-        //}
+        private bool CopyFile(string file, DmFile model) {
+            FileToSave = model;
+            try {
+                return StorageManager.CopyFile(file, model.RelativePath + "\\" + model.FileName);
+            }
+            finally {
+                FileToSave = null;
+            }
+        }
 
-        //private void CheckInitializeStorageVolumes() {
-        //    StorageManager.CheckInitializeStorageVolumes();
-        //}
+        private void CheckInitializeStorageVolumes() {
+            StorageManager.CheckInitializeStorageVolumes();
+        }
 
-        public void ProcessFile(string file, int index, int count) {
+        public DmFile ProcessFile(string file, int index, int count) {
             Program.Log.Info(string.Format("Processing file {0}", file));
             var dmfile = ProcessFileCore(file);
             if (Model != null && dmfile != null)
                 Model.AddFile(dmfile);
             Program.Log.Info(string.Format("Success", file));
+            return dmfile;
         }
-        //ImageInfo LoadImageUsingWindowsImaging(string file) {
-        //    using(FileStream fs = new FileStream(file, FileMode.Open, FileAccess.Read)) {
-        //        try {
-        //            BitmapDecoder decoder = BitmapDecoder.Create(fs, BitmapCreateOptions.None | BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.None);
-        //            if(decoder != null && decoder.Frames.Count > 0) {
-        //                ImageInfo imageInfo = new ImageInfo();
-        //                BitmapSource bs = decoder.Frames[0];
-        //                if(bs == null) return null;
-        //                imageInfo.thumbImage = GetImageFromBitmapSource2(decoder.Frames[0]);
-        //                imageInfo.width = (int)bs.Width;
-        //                imageInfo.height = (int)bs.Height;
-        //                imageInfo.dpi = (int)bs.DpiX;
-        //                imageInfo.colorDepth = bs.Format.BitsPerPixel;
-        //                http://msdn.microsoft.com/en-us/library/windows/desktop/ee719904%28v=vs.85%29.aspx
-        //                http://msdn.microsoft.com/en-us/library/windows/desktop/ee872007%28v=vs.85%29.aspx
-        //                BitmapMetadata bitmapMetadata = (BitmapMetadata)bs.Metadata;
-        //                if(bitmapMetadata == null) return imageInfo;
-        //                imageInfo.producer = TryGetMetadataValue<string>(bitmapMetadata, "System.Photo.CameraManufacturer");
-        //                imageInfo.model = TryGetMetadataValue<string>(bitmapMetadata, "System.Photo.CameraModel");
-        //                imageInfo.shutter = (float)TryGetMetadataValue<double>(bitmapMetadata, "System.Photo.ShutterSpeed");
-        //                imageInfo.iso = (float)TryGetMetadataValue<ushort>(bitmapMetadata, "System.Photo.ISOSpeed");
-        //                imageInfo.focalLength = (float)TryGetMetadataValue<double>(bitmapMetadata, "System.Photo.FocalLength");
-        //                imageInfo.flip = TryGetMetadataValue<ushort>(bitmapMetadata, "System.Photo.Orientation");
-        //                imageInfo.flashUsed = TryGetMetadataValue<ushort>(bitmapMetadata, "System.Photo.Flash");
-        //                return imageInfo;
-        //            }
-        //        } catch { }
-        //        return null;
-        //    }
-        //}
+        ImageInfo LoadImageUsingWindowsImaging(string file) {
+            using(FileStream fs = new FileStream(file, FileMode.Open, FileAccess.Read)) {
+                try {
+                    BitmapDecoder decoder = BitmapDecoder.Create(fs, BitmapCreateOptions.None | BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.None);
+                    if(decoder != null && decoder.Frames.Count > 0) {
+                        ImageInfo imageInfo = new ImageInfo();
+                        BitmapSource bs = decoder.Frames[0];
+                        if(bs == null) return null;
+                        imageInfo.thumbImage = GetImageFromBitmapSource2(decoder.Frames[0]);
+                        imageInfo.width = (int)bs.Width;
+                        imageInfo.height = (int)bs.Height;
+                        imageInfo.dpi = (int)bs.DpiX;
+                        imageInfo.colorDepth = bs.Format.BitsPerPixel;
+                        //http://msdn.microsoft.com/en-us/library/windows/desktop/ee719904%28v=vs.85%29.aspx
+                        //http://msdn.microsoft.com/en-us/library/windows/desktop/ee872007%28v=vs.85%29.aspx
+                        BitmapMetadata bitmapMetadata = (BitmapMetadata)bs.Metadata;
+                        if(bitmapMetadata == null) return imageInfo;
+                        imageInfo.producer = TryGetMetadataValue<string>(bitmapMetadata, "System.Photo.CameraManufacturer");
+                        imageInfo.model = TryGetMetadataValue<string>(bitmapMetadata, "System.Photo.CameraModel");
+                        imageInfo.shutter = (float)TryGetMetadataValue<double>(bitmapMetadata, "System.Photo.ShutterSpeed");
+                        imageInfo.iso = (float)TryGetMetadataValue<ushort>(bitmapMetadata, "System.Photo.ISOSpeed");
+                        imageInfo.focalLength = (float)TryGetMetadataValue<double>(bitmapMetadata, "System.Photo.FocalLength");
+                        imageInfo.flip = TryGetMetadataValue<ushort>(bitmapMetadata, "System.Photo.Orientation");
+                        imageInfo.flashUsed = TryGetMetadataValue<ushort>(bitmapMetadata, "System.Photo.Flash");
+                        return imageInfo;
+                    }
+                }
+                catch { }
+                return null;
+            }
+        }
 
         private Image GetImageFromBitmapSource2(BitmapFrame bitmapFrame) {
             Size size = ResampleBitmap(new Size((int)bitmapFrame.Width, (int)bitmapFrame.Height), ThumbSize.Width, ThumbSize.Height);
