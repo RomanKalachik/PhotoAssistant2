@@ -9,17 +9,21 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PhotoAssistant.UI</RootNamespace>
     <AssemblyName>PhotoAssistant.UI</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -41,6 +45,11 @@
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -75,101 +84,83 @@
     <Reference Include="PhotoAssistant.Utils">
       <HintPath>..\dlls\PhotoAssistant.Utils.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.BonusSkins.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.BonusSkins.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.BonusSkins.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.Charts.v15.1.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.Charts.v15.1.Core.dll</HintPath>
+    <Reference Include="DevExpress.Charts.v17.2.Core, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.CodeParser.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.CodeParser.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.CodeParser.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.Data.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.Data.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.Data.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.Images.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4">
-      <HintPath>..\dlls\DevExpress.Images.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.Images.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4">
     </Reference>
-    <Reference Include="DevExpress.Map.v15.1.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.Map.v15.1.Core.dll</HintPath>
+    <Reference Include="DevExpress.Map.v17.2.Core, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.Printing.v15.1.Core.dll</HintPath>
+    <Reference Include="DevExpress.Pdf.v17.2.Core, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.Sparkline.v15.1.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.Sparkline.v15.1.Core.dll</HintPath>
+    <Reference Include="DevExpress.RichEdit.v17.2.Export, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.Utils.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.Printing.v17.2.Core, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.Utils.v15.1.UI, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.Utils.v15.1.UI.dll</HintPath>
+    <Reference Include="DevExpress.Sparkline.v17.2.Core, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.XtraBars.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.XtraBars.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.Utils.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.XtraCharts.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.XtraCharts.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.Utils.v17.2.UI, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.XtraCharts.v15.1.Extensions, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.XtraCharts.v15.1.Extensions.dll</HintPath>
+    <Reference Include="DevExpress.XtraBars.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.XtraCharts.v15.1.UI, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.XtraCharts.v15.1.UI.dll</HintPath>
+    <Reference Include="DevExpress.XtraCharts.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.XtraCharts.v15.1.Wizard, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.XtraCharts.v15.1.Wizard.dll</HintPath>
+    <Reference Include="DevExpress.XtraCharts.v17.2.Extensions, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.XtraEditors.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.XtraCharts.v17.2.UI, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.XtraGrid.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.XtraGrid.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.XtraCharts.v17.2.Wizard, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.XtraLayout.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.XtraLayout.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.XtraEditors.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.XtraMap.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.XtraMap.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.XtraGrid.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.XtraNavBar.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.XtraLayout.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.XtraPivotGrid.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.XtraPivotGrid.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.XtraMap.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.XtraPrinting.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.XtraPrinting.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.XtraNavBar.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.XtraReports.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.XtraReports.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.XtraPivotGrid.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.XtraReports.v15.1.Extensions, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.XtraReports.v15.1.Extensions.dll</HintPath>
+    <Reference Include="DevExpress.XtraPrinting.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.XtraRichEdit.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.XtraRichEdit.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.PivotGrid.v17.2.Core, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.XtraRichEdit.v15.1.Extensions, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.XtraRichEdit.v15.1.Extensions.dll</HintPath>
+    <Reference Include="DevExpress.XtraReports.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.XtraSpellChecker.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.XtraSpellChecker.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.XtraReports.v17.2.Extensions, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.XtraSpreadsheet.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.XtraSpreadsheet.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.Office.v17.2.Core, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.XtraTreeList.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.XtraTreeList.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.RichEdit.v17.2.Core, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.XtraVerticalGrid.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.XtraVerticalGrid.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.XtraRichEdit.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.Xpf.Core.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.Xpf.Core.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.XtraRichEdit.v17.2.Extensions, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="DevExpress.Xpf.Themes.MetropolisDark.v15.1, Version=15.1.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
-      <HintPath>..\dlls\DevExpress.Xpf.Themes.MetropolisDark.v15.1.dll</HintPath>
+    <Reference Include="DevExpress.XtraSpellChecker.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+    </Reference>
+    <Reference Include="DevExpress.XtraSpreadsheet.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+    </Reference>
+    <Reference Include="DevExpress.XtraVerticalGrid.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+    </Reference>
+    <Reference Include="DevExpress.Mvvm.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+    </Reference>
+    <Reference Include="DevExpress.Xpf.CodeView.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Themes.MetropolisDark.v17.2, Version=17.2.0.0, Culture=neutral, PublicKeyToken=79868b8147b5eae4, processorArchitecture=MSIL">
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -306,12 +297,6 @@
     <Compile Include="View\EditingControls\BasicAdjustmentControl.Designer.cs">
       <DependentUpon>BasicAdjustmentControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\EditingControls\ColorLabelsControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="View\EditingControls\ColorTrackBarControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="View\EditingControls\CropParamsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -331,12 +316,6 @@
       <DependentUpon>EditingControlRightPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="View\EditingControls\HistogrammControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="View\EditingControls\MultiTrackBarControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="View\EditingControls\ScrollableSpinEdit.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\EditingControls\ToneCurveControl.cs">
@@ -524,6 +503,7 @@
       <DependentUpon>WebControl.cs</DependentUpon>
     </Compile>
     <None Include="App.config" />
+    <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -659,6 +639,10 @@
     <ProjectReference Include="..\PhotoAssistant.Core\PhotoAssistant.Core.csproj">
       <Project>{f544bbcb-efd8-4225-bcd5-9e784bce0031}</Project>
       <Name>PhotoAssistant.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotoAssistant.Indexer\PhotoAssistant.Indexer.csproj">
+      <Project>{f2eab0f9-966d-4553-8a17-7163fc7bc0b3}</Project>
+      <Name>PhotoAssistant.Indexer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

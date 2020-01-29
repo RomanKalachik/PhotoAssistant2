@@ -150,10 +150,11 @@ namespace PhotoAssistant.Controls.Win.EditingControls {
         void DrawViewportBounds(ControlGraphicsInfoArgs info) {
             PictureNavigatorViewInfo vi = (PictureNavigatorViewInfo)info.ViewInfo;
             Rectangle lastBounds = vi.LastViewportBounds;
-            if(vi.IsAnimated) {
-                DrawBounds(info, vi.AnimatedBounds);
-                return;
-            }
+            if (vi.LastViewportBounds.X < 0 || vi.LastViewportBounds.Y < 0) return;
+            //if(vi.IsAnimated) {
+            //    DrawBounds(info, vi.AnimatedBounds);
+            //    return;
+            //}
             if(lastBounds != vi.ViewportBounds && !vi.SuppressViewportNavigation) {
                 vi.AnimateViewPortBounds(lastBounds, vi.ViewportBounds);
                 return;
